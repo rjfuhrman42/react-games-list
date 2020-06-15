@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import fire from "./config/fire"
 import SearchBar from './components/SearchBar';
-import GameCard from './components/GameCard';
+import GamesList from './components/GamesList'
 import Login from './components/Login'
 
 import {
@@ -46,70 +46,83 @@ function App() {
       .then(data => data.json())
       .then(games => {
         console.log(games.results)
-        let temp = []
-        games.results.forEach(game => temp.push(<li className="w-3/6 h-40 m-auto list-none" key={game.id}><GameCard title={game.name} image={game.background_image}/></li>))
-        setGames(temp)})
+        setGames(games.results)})
   }
 
   // relevancy is defined by games released 2 months prior to current month, up to the end of the year
 
   useEffect(() => {
-
-    fire.isInitialized().then(val => {
-      setFirebaseInitialized(val)
-    })
+    console.log(firebaseInitialized)
+    checkInitialization()
 
     const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-relevance` 
     getGamesData(api_url)
 
   }, [])
 
-  if(!firebaseInitialized)
-    return (
-      <div className="App">
-        <header className="w-screen m-auto inline">
-              <Link to='/' className="float-right border-2 border-green-500 bg-green-200 p-4">
-                Home
-              </Link>
-              <Link to='/login' className="float-right border-2 border-green-500 bg-green-200 p-4">
-                Log In
-              </Link>
-              <Link to='/register' className="float-right border-2 border-green-500 bg-green-200 p-4">
-                Register
-              </Link>
-          <SearchBar handleKeyPress={handleKeyPress}/>      {/* Make this into a separate component, so that when the user signs in they are redirected to their dashboard*/} 
-        </header>
+  function checkInitialization(){
+    fire.isInitialized().then(val => {
+      setLoggedIn(val ? true : false)
+      setFirebaseInitialized(val)
+    })
+  }
 
-        <Switch>       
-          <Route exact path="/">
-            {games}
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
+  var loggedOutLinks = (
+    <div>
+        <Link to='/login' className="float-right border-2 border-gray-900 bg-gray-700 p-4 text-white">
+          Log In
+        </Link>
+        <Link to='/register' className="float-right border-2 border-gray-900 bg-gray-700 p-4 text-white">
+          Create an account
+        </Link>
+    </div>
+  )
 
-        </Switch>
-      </div>
-    )
-  else return (
-    <div className="App">
-    <header className="w-screen m-auto inline">
-          <Link to='/' className="float-right border-2 border-green-500 bg-green-200 p-4">
-            Home
-          </Link>
-          <button onClick={() => fire.logout()}>Log out</button>      {/* Make this into a separate component, so that when the user signs in they are redirected to their dashboard*/}
-      <SearchBar handleKeyPress={handleKeyPress}/>
+  var loggedInLinks = (
+    <div>
+      <Link to='/' className="float-right border-2 border-green-500 bg-green-200 p-4">
+        My List
+      </Link>
+      <button className="float-right border-2 border-red-500 bg-red-200 p-4"
+              onClick={() => {
+                                fire.logout()
+                                checkInitialization()
+                                }}>
+              Log out
+      </button>
+    </div>
+  )
+
+
+if(firebaseInitialized !== false)
+return (
+  <div className="App">
+    <header className="w-full bg-black pb-4 mb-6">
+      <Link to='/' className="float-right border-2 border-green-500 bg-green-200 p-4">
+        Home
+      </Link>
+      {loggedIn ? loggedInLinks : loggedOutLinks}
+      <SearchBar handleKeyPress={handleKeyPress}/>      
     </header>
 
     <Switch>       
       <Route exact path="/">
-        {games}
+        <GamesList games={games}/>
       </Route>
+      <Route path="/login">
+        <Login checkInitialization={checkInitialization}/>
+      </Route>
+      <Route path="/register">
+        <Register checkInitialization={checkInitialization} />
+      </Route>
+
     </Switch>
   </div>
+)
+else return (
+  <div className="m-auto text-center">
+  </div>
+
   )
 }
 

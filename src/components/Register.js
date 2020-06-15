@@ -1,12 +1,14 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom";
 import fire from "../config/fire"
 
-function Register()
+function Register({checkInitialization})
 {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    let history = useHistory();
     
     return (
         <div>
@@ -34,7 +36,7 @@ function Register()
                            value={password}
                            />
                 </form>
-                <button className="bg-blue-500 p-2 m-2">Sign Up!</button>
+                <button onClick={() => onRegister()} className="bg-blue-500 p-2 m-2">Sign Up!</button>
             </div>
         </div>
     )
@@ -42,6 +44,8 @@ function Register()
     async function onRegister() {
         try {
             await fire.register(name, email, password)
+            checkInitialization()
+            history.push("/");
         } catch(error) {
             alert(error.message)
         }

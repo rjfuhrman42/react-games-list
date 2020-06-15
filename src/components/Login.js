@@ -1,12 +1,14 @@
 import React, {useState} from "react"
-import Modal from "react-modal"
+import { useHistory } from "react-router-dom";
 import fire from "../config/fire"
 
-function Login() {
+
+function Login({checkInitialization}) {
 
     const [modalOpen, setModalOpen] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    let history = useHistory();
 
     function handleChange(e){
         let {value} = e.target.value
@@ -42,9 +44,13 @@ function Login() {
     async function login(e) {
         try {
           await fire.login(email, password)
+          checkInitialization()
+          history.push("/");
         } catch(error) {
-            alert(error.message)
-            console.log(error)
+            if(error.code === "auth/invalid-email")
+                alert('Please enter a valid email address')
+            else 
+                alert(error.message)
         }
     }
 }
