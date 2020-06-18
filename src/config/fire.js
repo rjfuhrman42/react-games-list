@@ -29,8 +29,23 @@ class Firebase {
 
   async register(name, email, password) {
     await this.auth.createUserWithEmailAndPassword(email, password)
+
+    this.getDatabase().ref(`users/${this.auth.currentUser.uid}`).set({
+      list: {},
+      username: name
+    })
+
     return this.auth.currentUser.updateProfile({
       displayName: name
+    })
+  }
+
+  addGame(game, rating){
+    let ref = this.getDatabase().ref(`users/${this.auth.currentUser.uid}/list/`).push()       // get a reference to the user's game list
+    ref.set({
+        title: game.title,                                                                    // append the game into the list 
+        rating: rating,
+        genres: game.genres
     })
   }
 

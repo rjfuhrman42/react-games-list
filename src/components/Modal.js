@@ -1,6 +1,7 @@
 import React from "react";
+import fire from "../config/fire"
 
-function Modal({title}) {
+function Modal({game}) {
   const [showModal, setShowModal] = React.useState(false);
 
   function onSubmit() {
@@ -12,8 +13,8 @@ function Modal({title}) {
           console.log(rating)
       }
       else {
+        fire.addGame(game, rating)
         setShowModal(false)
-        console.log(rating)
       }
   }
 
@@ -38,7 +39,7 @@ function Modal({title}) {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                   <h3 className="text-3xl font-semibold text-black">
-                    {title}
+                    {game.title}
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
