@@ -24,8 +24,6 @@ function App() {
   let month = date.getMonth() - 1
   month = month > 10 ? month : `0${month}`
 
-  console.log(firebaseInitialized)
-
   const handleKeyPress = (event) =>
   {
       if(event.key === 'Enter')
@@ -45,14 +43,12 @@ function App() {
       }})
       .then(data => data.json())
       .then(games => {
-        console.log(games.results)
         setGames(games.results)})
   }
 
   // relevancy is defined by games released 2 months prior to current month, up to the end of the year
 
   useEffect(() => {
-    console.log(firebaseInitialized)
     checkInitialization()
 
     const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-relevance` 
@@ -107,7 +103,7 @@ return (
 
     <Switch>       
       <Route exact path="/">
-        <GamesList games={games}/>
+        <GamesList games={games} isLoggedIn={loggedIn}/>
       </Route>
       <Route path="/login">
         <Login checkInitialization={checkInitialization}/>

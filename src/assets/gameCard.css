@@ -18,20 +18,36 @@
 .title-container{ 
     position: absolute;
     bottom: 0;
-    height: 10%;
+    height: 15%;
     width: 16vw;
     font-size: large;
     background-color: black;
     transition: width 0.2s, height 0.2s ease;
+    cursor: pointer;
     border-radius: 2px;
+}
+
+.hidden-contents {
+    color: white;
+    opacity: 0;
+    font-size: 14px;
+}
+
+.button{
+    background: gray;
 }
 
 /* .game-card:hover {
     width: 17vw;
 } */
 
-.game-card:hover .title-container {
+.title-container:hover{
     height: 40%;
+}
+
+.title-container:hover .hidden-contents {
+    opacity: 100%;
+    transition: opacity 0.2s ease;
 }
 
 

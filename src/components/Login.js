@@ -5,7 +5,6 @@ import fire from "../config/fire"
 
 function Login({checkInitialization}) {
 
-    const [modalOpen, setModalOpen] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     let history = useHistory();
@@ -19,7 +18,7 @@ function Login({checkInitialization}) {
 
     return (
         <div>
-            <div isOpen={modalOpen} className="bg-gray-700 w-64 rounded text-white m-auto mt-4 p-4">
+            <div className="bg-gray-700 w-64 rounded text-white m-auto mt-4 p-4">
                 <form>
                     <h3>Email</h3>
                     <input className="border-2 border-black text-black" 

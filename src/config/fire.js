@@ -1,4 +1,5 @@
 import app from "firebase/app"
+import firebase from "firebase"
 import 'firebase/auth'
 
 var firebaseConfig = {
@@ -31,6 +32,10 @@ class Firebase {
     return this.auth.currentUser.updateProfile({
       displayName: name
     })
+  }
+
+  getDatabase() {
+    return firebase.database()
   }
 
   isInitialized() {
