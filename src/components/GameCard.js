@@ -15,10 +15,6 @@ function GameCard({data, isLoggedIn}) {
     }
     console.log(isLoggedIn)
 
-    useEffect(() => {
-        console.log(fire.auth.currentUser.uid)
-    }, [])
-
     return (
         <div className="game-card" style={background}>
             <div className="title-container">
@@ -26,6 +22,7 @@ function GameCard({data, isLoggedIn}) {
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
                 {fire.auth.currentUser ? <Modal game={{
+                    image: image,
                     title: title,
                     genres: genres
                 }}

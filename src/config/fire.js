@@ -41,12 +41,19 @@ class Firebase {
   }
 
   addGame(game, rating){
-    let ref = this.getDatabase().ref(`users/${this.auth.currentUser.uid}/list/`).push()       // get a reference to the user's game list
+    let ref = this.getListRef().push()     
     ref.set({
+        image: game.image,
         title: game.title,                                                                    // append the game into the list 
         rating: rating,
         genres: game.genres
     })
+  }
+
+  getListRef()
+  {
+    return this.getDatabase()
+               .ref(`users/${this.auth.currentUser.uid}/list/`)                              // returns a reference to the user's game list      
   }
 
   getDatabase() {

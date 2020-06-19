@@ -3,6 +3,7 @@ import fire from "./config/fire"
 import SearchBar from './components/SearchBar';
 import GamesList from './components/GamesList'
 import Login from './components/Login'
+import UserList from "./components/UserList"
 
 import {
   Switch,
@@ -76,7 +77,7 @@ function App() {
 
   var loggedInLinks = (
     <div>
-      <Link to='/' className="float-right border-2 border-green-500 bg-green-200 p-4">
+      <Link to='/list' className="float-right border-2 border-green-500 bg-green-200 p-4">
         My List
       </Link>
       <button className="float-right border-2 border-red-500 bg-red-200 p-4"
@@ -110,6 +111,9 @@ return (
       </Route>
       <Route path="/register">
         <Register checkInitialization={checkInitialization} />
+      </Route>
+      <Route path="/list">
+        <UserList />
       </Route>
 
     </Switch>
