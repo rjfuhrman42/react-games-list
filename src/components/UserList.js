@@ -30,7 +30,7 @@ function UserList() {
     }, [])
 
     return (
-        <table className="bg-gray-700 text-gray-300">
+        <table className="bg-gray-700 text-gray-300 w-3/4 m-auto">
             <thead className="bg-black text-white">
                 <tr>
                     <th scope="col">Image</th>
