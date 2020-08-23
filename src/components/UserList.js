@@ -1,6 +1,8 @@
 import React,{ useState, useEffect } from "react" 
 import fire from "../config/fire"
 
+import '../assets/userList.css'
+
 
 function UserList() {
 
@@ -14,12 +16,13 @@ function UserList() {
 
             snapshot.forEach(snap => {
                 let {image, title, rating} = snap.val()
+            
                 let row = <tr>
-                            <td>
-                                <img src={image} className="w-24"></img>
+                            <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
+                                
                             </td>
-                            <td>{title}</td>
-                            <td>{rating}</td>
+                            <td className="pl-4">{title}</td>
+                            <td className="w-24 text-center">{rating}</td>
                           </tr>
                 temp.push(row)
             })
@@ -30,8 +33,8 @@ function UserList() {
     }, [])
 
     return (
-        <table className="bg-gray-700 text-gray-300 w-3/4 m-auto">
-            <thead className="bg-black text-white">
+        <table className="bg-gray-700 text-gray-300 w-1/2 m-auto">
+            <thead className="bg-black text-white rounded">
                 <tr>
                     <th scope="col">Image</th>
                     <th scope="col">Title</th>

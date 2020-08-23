@@ -99,7 +99,9 @@ return (
         Home
       </Link>
       {loggedIn ? loggedInLinks : loggedOutLinks}
-      <SearchBar handleKeyPress={handleKeyPress}/>      
+      <Link to="/">
+        <SearchBar handleKeyPress={handleKeyPress}/>
+      </Link>      
     </header>
 
     <Switch>       
