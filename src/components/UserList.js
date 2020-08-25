@@ -17,7 +17,7 @@ function UserList() {
             snapshot.forEach(snap => {
                 let {image, title, rating} = snap.val()
             
-                let row = <tr>
+                let row = <tr key={image}>
                             <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
                                 
                             </td>

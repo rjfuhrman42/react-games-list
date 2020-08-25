@@ -27,6 +27,7 @@ function GameCard({data, isLoggedIn}) {
                     genres: genres
                 }}
             /> : <h1>Log in to rate this game!</h1>}
+                <a className="hidden-contents bg-blue-600" href={'https://rawg.io/games/' + data.slug} target="_blank"> View on RAWG.io</a>
             </div>
         </div>
     )

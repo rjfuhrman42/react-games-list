@@ -8,3 +8,7 @@
 td {
     border: 2px solid black;
 }
+
+table, th {
+    border: 5px solid black;
+}

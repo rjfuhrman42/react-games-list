@@ -31,6 +31,7 @@
     color: white;
     opacity: 0;
     font-size: 14px;
+    display: none;
 }
 
 .button{
@@ -48,6 +49,7 @@
 .title-container:hover .hidden-contents {
     opacity: 100%;
     transition: opacity 0.2s ease;
+    display: block;
 }
 
 
