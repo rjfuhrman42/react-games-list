@@ -9,6 +9,7 @@
     height: 26em;
     margin: 0.5em;
     color: white;
+    border: 4px solid black;
     background-position: center;
     background-size: cover;
     transition: width 0.2s ease;
@@ -19,12 +20,12 @@
     position: absolute;
     bottom: 0;
     height: 15%;
-    width: 16vw;
+    width: 100%;
     font-size: large;
     background-color: black;
     transition: width 0.2s, height 0.2s ease;
     cursor: pointer;
-    border-radius: 2px;
+    /* border-radius: 2px; */
 }
 
 .hidden-contents {

@@ -5,6 +5,8 @@ import GamesList from './components/GamesList'
 import Login from './components/Login'
 import UserList from "./components/UserList"
 
+import './assets/full.css'
+
 import {
   Switch,
   Route,
