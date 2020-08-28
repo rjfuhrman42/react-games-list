@@ -8,10 +8,12 @@ import UserList from "./components/UserList"
 import './assets/full.css'
 
 import {
+  Redirect,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
 import Register from './components/Register';
 
 function App() {
@@ -111,7 +113,7 @@ return (
         <GamesList games={games} isLoggedIn={loggedIn}/>
       </Route>
       <Route path="/login">
-        <Login checkInitialization={checkInitialization}/>
+        {loggedIn ? <Redirect to="/"/> : <Login checkInitialization={checkInitialization}/>}
       </Route>
       <Route path="/register">
         <Register checkInitialization={checkInitialization} />
