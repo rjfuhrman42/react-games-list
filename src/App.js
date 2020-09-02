@@ -84,13 +84,15 @@ function App() {
       <Link to='/list' className="float-right border-2 border-green-500 bg-green-200 p-4">
         My List
       </Link>
-      <button className="float-right border-2 border-red-500 bg-red-200 p-4"
-              onClick={() => {
-                                fire.logout()
-                                checkInitialization()
-                                }}>
-              Log out
-      </button>
+      <Link to="/">
+        <button className="float-right border-2 border-red-500 bg-red-200 p-4"
+                onClick={() => {
+                                  fire.logout()
+                                  checkInitialization()
+                                  }}>
+                Log out
+        </button>
+      </Link>
     </div>
   )
 

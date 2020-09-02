@@ -9,11 +9,27 @@ function GameCard({data, isLoggedIn}) {
     const [image, setImage] = useState(data.background_image)
     const [title, setTitle] = useState(data.name)
     const [genres, setGenres] = useState(data.genres.map(genre => `${genre.name} `))
+    const [inList, setInList] = useState()
     
     const background = {
         backgroundImage: `url('${image}')`,
     }
-    console.log(isLoggedIn)
+
+    const isGameAlreadyInList = () => {
+        if(!isLoggedIn) return
+
+        let ref = fire.getListRef()
+
+        ref.once('value', (snapshot) => {
+         snapshot.forEach(snap => {
+
+            let currentTitle = snap.val().title
+            if(title === currentTitle) setInList(true)                  // Check the current game title against all other game titles in the database!
+                                                                        // If there is a match then dissallow the ability to add and rate the game.
+
+         })
+     })
+    }
 
     return (
         <div className="game-card" style={background}>
@@ -21,7 +37,18 @@ function GameCard({data, isLoggedIn}) {
                 <h4 className="h-10">{title}</h4>
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
-                {fire.auth.currentUser ? <Modal game={{
+                {isGameAlreadyInList()}
+                {fire.auth.currentUser ? inList ?  
+                 <button
+                    className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                    style={{ transition: "all .15s ease" }}
+                    disabled="true"
+                 >
+                    In List ✔
+                 </button>
+                :
+                 <Modal onClick={() => setInList(true)} game={{
                     image: image,
                     title: title,
                     genres: genres

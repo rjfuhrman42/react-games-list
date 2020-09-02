@@ -1,7 +1,7 @@
 import React from "react";
 import fire from "../config/fire"
 
-function Modal({game}) {
+function Modal({onClick, game}) {
   const [showModal, setShowModal] = React.useState(false);
 
   function onSubmit() {
@@ -26,7 +26,7 @@ function Modal({game}) {
         style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}
       >
-        Add to list +
+        Add to list ➕
       </button>
       {showModal ? (
         <>
@@ -85,6 +85,7 @@ function Modal({game}) {
                     style={{ transition: "all .15s ease" }}
                     onClick={() => {
                         onSubmit()
+                        onClick()
                     }}
                   >
                     Save Changes
