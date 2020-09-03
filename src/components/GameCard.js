@@ -34,7 +34,7 @@ function GameCard({data, isLoggedIn}) {
     return (
         <div className="game-card" style={background}>
             <div className="title-container">
-                <h4 className="h-10">{title}</h4>
+                <h4 className="h-10 mt-4 text-center">{title}</h4>
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
                 {isGameAlreadyInList()}
@@ -43,17 +43,19 @@ function GameCard({data, isLoggedIn}) {
                     className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     style={{ transition: "all .15s ease" }}
-                    disabled="true"
                  >
                     In List ✔
                  </button>
-                :
-                 <Modal onClick={() => setInList(true)} game={{
+                :                                                               // This may need to be cleaned up for readability ... 
+                <Modal onClick={() => setInList(true)} game={{
                     image: image,
                     title: title,
                     genres: genres
-                }}
-            /> : <h1>Log in to rate this game!</h1>}
+                }}>
+                    Add to list ➕
+                </Modal>
+                : 
+                <h1 className="hidden-contents">Log in to rate this game!</h1>}
                 <a className="hidden-contents bg-blue-600" href={'https://rawg.io/games/' + data.slug} target="_blank"> View on RAWG.io</a>
             </div>
         </div>

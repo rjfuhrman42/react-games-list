@@ -19,10 +19,11 @@
 .title-container{ 
     position: absolute;
     bottom: 0;
-    height: 15%;
+    height: 14%;
     width: 100%;
     font-size: large;
     background-color: black;
+    margin: 0 auto;
     transition: width 0.2s, height 0.2s ease;
     cursor: pointer;
     border-bottom-right-radius: 5px;
@@ -49,7 +50,7 @@
 } */
 
 .title-container:hover{
-    height: 40%;
+    height: 50%;
 }
 
 .title-container:hover .hidden-contents {

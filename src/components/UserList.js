@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from "react" 
+import Modal from "./Modal"
 import fire from "../config/fire"
 
 import '../assets/userList.css'
@@ -21,7 +22,10 @@ function UserList() {
                             <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
                                 
                             </td>
-                            <td className="pl-4">{title}</td>
+                            <td className="pl-4">
+                                {title}
+                                <button className="float-right pr-2">Edit</button>
+                            </td>
                             <td className="w-24 text-center">{rating}</td>
                           </tr>
                 temp.push(row)
