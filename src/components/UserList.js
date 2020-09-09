@@ -16,7 +16,7 @@ function UserList() {
             let temp = []
 
             snapshot.forEach(snap => {
-                let {image, title, rating} = snap.val()
+                let {image, title, genres, rating} = snap.val()
             
                 let row = <tr key={image}>
                             <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
@@ -24,7 +24,15 @@ function UserList() {
                             </td>
                             <td className="pl-4">
                                 {title}
-                                <button className="float-right pr-2">Edit</button>
+                                <Modal currClass="float-right pr-2"
+                                       game={{
+                                            image: image,
+                                            title: title,
+                                            genres: genres
+                                        }}
+                                >
+                                Edit
+                                </Modal>
                             </td>
                             <td className="w-24 text-center">{rating}</td>
                           </tr>

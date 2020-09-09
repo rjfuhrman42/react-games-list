@@ -41,14 +41,51 @@ class Firebase {
   }
 
   addGame(game, rating){
-    let ref = this.getListRef().push()     
-    ref.set({
-        image: game.image,
-        title: game.title,                                                                    // append the game into the list 
-        rating: rating,
-        genres: game.genres
-    })
-  }
+
+    let ref = this.getListRef() 
+
+    let gameData = {
+          image: game.image,
+          title: game.title,                                                                    // append the game into the list 
+          rating: rating,
+          genres: game.genres
+      }
+
+    let updated = {}
+
+    ref.once('value', (snapshot) => {
+      let match = false
+     snapshot.forEach(snap => {
+
+        let currentTitle = snap.val().title
+        if(game.title === currentTitle)
+        {
+          match = true
+          updated[snap.key] = gameData                                                         // Check the current game title against all other game titles in the database!
+          ref.update(updated)                                                                  // If there is a match then update that match
+        }
+     })
+     if(!match)                                                                                // No match ~
+     {
+        ref.push().set({
+          image: game.image,
+          title: game.title,                                                                   // append the game into the list 
+          rating: rating,
+          genres: game.genres
+      })
+     }   
+
+ })
+
+     // let ref = this.getListRef().push()     
+    // ref.set({
+    //     image: game.image,
+    //     title: game.title,                                                                    // append the game into the list 
+    //     rating: rating,
+    //     genres: game.genres
+    // })
+
+}
 
   getListRef()
   {
@@ -59,6 +96,28 @@ class Firebase {
   getDatabase() {
     return firebase.database()
   }
+
+  isGameAlreadyInList(title) {
+
+    let ref = this.getListRef()
+    let match = false
+
+    ref.once('value', (snapshot) => {
+     snapshot.forEach(snap => {
+
+        let currentTitle = snap.val().title
+        if(title === currentTitle)
+        {
+          match = snap.key
+        }
+                                                                    // Check the current game title against all other game titles in the database!
+                                                                    // If there is a match then dissallow the ability to add and rate the game.
+     })
+ })
+
+ return match
+}
+
 
   isInitialized() {
 

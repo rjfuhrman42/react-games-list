@@ -1,7 +1,7 @@
 import React from "react";
 import fire from "../config/fire"
 
-function Modal({onClick, game, children}) {
+function Modal({onClick, game, currClass, children}) {
   const [showModal, setShowModal] = React.useState(false);
 
   function onSubmit() {
@@ -21,7 +21,7 @@ function Modal({onClick, game, children}) {
   return (
     <>
       <button
-        className="hidden-contents button font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        className={currClass + " button font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"}
         type="button"
         style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}
@@ -85,7 +85,7 @@ function Modal({onClick, game, children}) {
                     style={{ transition: "all .15s ease" }}
                     onClick={() => {
                         onSubmit()
-                        onClick()
+                        // onClick()
                     }}
                   >
                     Save Changes
