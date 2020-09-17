@@ -77,14 +77,6 @@ class Firebase {
 
  })
 
-     // let ref = this.getListRef().push()     
-    // ref.set({
-    //     image: game.image,
-    //     title: game.title,                                                                    // append the game into the list 
-    //     rating: rating,
-    //     genres: game.genres
-    // })
-
 }
 
   getListRef()

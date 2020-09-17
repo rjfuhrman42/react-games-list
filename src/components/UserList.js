@@ -8,17 +8,52 @@ import '../assets/userList.css'
 function UserList() {
 
     let [list, setList] = useState([])
+    let [usersGames, setUsersGames] = useState([])
+    let ref = fire.getListRef()
+    
+    ref.on('child_changed', (data) => {
+        let {title, rating} = data.val()
+        let test = usersGames.map((game) => game.title).indexOf(title)
 
-    useEffect(() => {
-        let ref = fire.getListRef()
+        if(test >= 0) {
+            setUsersGames(prev => {
+                let arr = [...prev]
+                arr[test].rating = rating
+                return arr
+             })
+        }
+    })
+
+    function getGamesFromFirebase() {
         ref.once('value', (snapshot) => {
 
             let temp = []
 
             snapshot.forEach(snap => {
                 let {image, title, genres, rating} = snap.val()
+                let game = {
+                    title: title,
+                    image: image,
+                    genres: genres,
+                    rating: rating
+                }
+                temp.push(game)
+            })
+
+            setUsersGames(temp)
+
+        })
+    }
+
+    function setListItems() {
+
+
+            let temp = []
+
+            usersGames.forEach(game => {
+                let {image, title, genres, rating} = game
             
-                let row = <tr key={image}>
+                let row = <tr key={title}>
                             <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
                                 
                             </td>
@@ -38,11 +73,16 @@ function UserList() {
                           </tr>
                 temp.push(row)
             })
-
             setList(temp)
+    }
 
-        })
-    }, [])
+        useEffect(() => {
+
+            getGamesFromFirebase()
+
+        }, [])
+
+        useEffect(() => setListItems(), [usersGames])
 
     return (
         <table className="bg-gray-700 text-gray-300 w-1/2 m-auto">
