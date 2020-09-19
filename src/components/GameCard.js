@@ -27,7 +27,6 @@ function GameCard({data, isLoggedIn}) {
                 <h4 className="h-10 mt-4 text-center">{title}</h4>
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
-                {isGameAlreadyInList()}
                 {fire.auth.currentUser ? inList ?  
                  <button
                     className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"

@@ -79,6 +79,11 @@ class Firebase {
 
 }
 
+  removeGame(key) {
+    var ref = this.getListRef().child(key)
+    ref.remove()
+  }
+
   getListRef()
   {
     return this.getDatabase()
