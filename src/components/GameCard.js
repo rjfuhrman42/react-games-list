@@ -15,18 +15,19 @@ function GameCard({data, isLoggedIn}) {
         backgroundImage: `url('${image}')`,
     }
 
-    const isGameAlreadyInList = () => {
+    const isGameAlreadyInList = async () => {
+        console.log('checked!!!')
         if(!isLoggedIn) return
-
-        if(fire.isGameAlreadyInList(title)) setInList(true)
+        setInList(await fire.isGameAlreadyInList(title))
     }
 
     return (
-        <div className="game-card" style={background}>
+        <div className="game-card" style={background} onMouseEnter={() => isGameAlreadyInList()}>
             <div className="title-container">
                 <h4 className="h-10 mt-4 text-center">{title}</h4>
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
+
                 {fire.auth.currentUser ? inList ?  
                  <button
                     className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"

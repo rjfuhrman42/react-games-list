@@ -19,7 +19,6 @@ import Register from './components/Register';
 function App() {
   const [games, setGames] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
-  const [userID, setUserID] = useState()
   const [firebaseInitialized, setFirebaseInitialized] = useState(false)
 
   const date = new Date(Date.now())

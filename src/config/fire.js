@@ -94,18 +94,18 @@ class Firebase {
     return firebase.database()
   }
 
-  isGameAlreadyInList(title) {
+  async isGameAlreadyInList(title) {
 
     let ref = this.getListRef()
     let match = false
-
-    ref.once('value', (snapshot) => {
+    
+    await ref.once('value', (snapshot) => {
      snapshot.forEach(snap => {
 
         let currentTitle = snap.val().title
         if(title === currentTitle)
         {
-          match = snap.key
+          match = true
         }
                                                                     // Check the current game title against all other game titles in the database!
                                                                     // If there is a match then dissallow the ability to add and rate the game.
@@ -113,6 +113,7 @@ class Firebase {
  })
 
  return match
+
 }
 
 

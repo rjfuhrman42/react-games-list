@@ -9,12 +9,12 @@ function Login({checkInitialization}) {
     const [password, setPassword] = useState('')
     let history = useHistory();
 
-    function handleChange(e){
-        let {value} = e.target.value
-        if(e.target.type === "email") 
-            setEmail(value)
-        else setPassword (value)
-    }
+    // function handleChange(e){
+    //     let {value} = e.target.value
+    //     if(e.target.type === "email") 
+    //         setEmail(value)
+    //     else setPassword (value)
+    // }
 
     return (
         <div>

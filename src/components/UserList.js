@@ -42,7 +42,7 @@ function UserList() {
             let temp = []
 
             usersGames.forEach(game => {
-                let {image, title, genres, rating, key} = game
+                let {image, title, rating, key} = game
             
                 let row = <tr key={key}>
                             <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
@@ -76,7 +76,7 @@ function UserList() {
             })
 
             ref.on('child_removed', (data) => {
-                let {title, rating} = data.val()                                    // whenever something changes about a game (e.g. rating) firebase will update the games list with the change
+                let {title} = data.val()                                    
                 let removed = usersGames.filter((game) => game.title !== title)   
                 if(removed.length > 0) setUsersGames(removed) 
             })
