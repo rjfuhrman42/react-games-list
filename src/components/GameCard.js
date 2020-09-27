@@ -16,15 +16,15 @@ function GameCard({data, isLoggedIn}) {
     }
 
     const isGameAlreadyInList = async () => {
-        console.log('checked!!!')
-        if(!isLoggedIn) return
-        setInList(await fire.isGameAlreadyInList(title))
+        if(!isLoggedIn || inList === true) return        // User is not logged or the game has already been identified as being in the list, then no need to check
+
+        setInList(await fire.isGameAlreadyInList(title)) // Check if the game is in the users list and set the result (true or false)
     }
 
     return (
-        <div className="game-card" style={background} onMouseEnter={() => isGameAlreadyInList()}>
+        <div className="game-card" style={background}>
             <div className="title-container">
-                <h4 className="h-10 mt-4 text-center">{title}</h4>
+                <h4 className="h-10 mt-4 text-center" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
 

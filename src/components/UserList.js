@@ -63,7 +63,7 @@ function UserList() {
             setList(temp)
 
             ref.on('child_changed', (data) => {                                     // Adds a listener to the list reference 
-                let {title, rating} = data.val()                                    // whenever something changes about a game (e.g. rating) firebase will update the games list with the change
+                let {title, rating} = data.val()                                    // Whenever something changes about a game (e.g. rating) firebase will update the games list with the change
                 let test = usersGames.map((game) => game.title).indexOf(title)      
         
                 if(test >= 0) {
@@ -82,6 +82,15 @@ function UserList() {
             })
     }
 
+    function sortGamesByRating() {
+
+        let sorted = usersGames.sort((curr, next) => {
+            return next.rating - curr.rating 
+        })
+
+        setUsersGames([...sorted])
+    }
+
         useEffect(() => {
 
             getGamesFromFirebase()                                      // On page load, grab a snapshot of the user's list from firebase
@@ -89,10 +98,10 @@ function UserList() {
         }, [])
 
         useEffect(() => {
-
             setListItems()
 
         }, [usersGames])                   // Whenever the user's games are updated, update the table as well 
+
 
     return (
         <table className="bg-gray-700 text-gray-300 w-1/2 m-auto">
@@ -100,7 +109,9 @@ function UserList() {
                 <tr>
                     <th scope="col">Image</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Rating</th>
+                    <th scope="col">
+                        <button className="hover:text-blue-400" onClick={() => sortGamesByRating()}>Rating</button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
