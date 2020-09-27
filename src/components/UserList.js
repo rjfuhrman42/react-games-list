@@ -9,6 +9,7 @@ function UserList() {
 
     let [list, setList] = useState([])                                      // the list of jsx components aka each individual list entry
     let [usersGames, setUsersGames] = useState([])                          // the list of games stored in the user's list, represented as objects
+    let [ascending, setAscending] = useState(false)
     let ref = fire.getListRef()                                             // Firebase reference to the user's list
     
     
@@ -85,9 +86,10 @@ function UserList() {
     function sortGamesByRating() {
 
         let sorted = usersGames.sort((curr, next) => {
-            return next.rating - curr.rating 
+            return ascending ? curr.rating - next.rating : next.rating - curr.rating     
         })
 
+        setAscending(prev => !prev)
         setUsersGames([...sorted])
     }
 
