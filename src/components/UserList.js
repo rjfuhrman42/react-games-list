@@ -83,13 +83,26 @@ function UserList() {
             })
     }
 
-    function sortGamesByRating() {
+    function sortGames(type) {
 
-        let sorted = usersGames.sort((curr, next) => {
-            return ascending ? curr.rating - next.rating : next.rating - curr.rating     
-        })
+        let sorted;
 
-        setAscending(prev => !prev)
+        switch(type) {
+            case "rating":
+                sorted = usersGames.sort((curr, next) => {
+                    return ascending ? curr.rating - next.rating : next.rating - curr.rating     // when sorting by rating the 4th game down gets changed no matter what?
+                })
+              break;
+            case "title":
+                sorted = usersGames.sort((curr, next) => {
+                    return ascending ? curr.title < next.title : next.title < curr.title     
+                })
+              break;
+            default:
+              return
+          } 
+
+        setAscending(prev => !prev) // should be setDescending
         setUsersGames([...sorted])
     }
 
@@ -110,9 +123,11 @@ function UserList() {
             <thead className="bg-black text-white rounded">
                 <tr>
                     <th scope="col">Image</th>
-                    <th scope="col">Title</th>
                     <th scope="col">
-                        <button className="hover:text-blue-400" onClick={() => sortGamesByRating()}>Rating</button>
+                        <button className="hover:text-blue-400" onClick={() => sortGames("title")}>Title</button>
+                    </th>
+                    <th scope="col">
+                        <button className="hover:text-blue-400" onClick={() => sortGames("rating")}>Rating</button> 
                     </th>
                 </tr>
             </thead>
