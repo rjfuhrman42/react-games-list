@@ -80,11 +80,11 @@ function App() {
 
   var loggedInLinks = (
     <div>
-      <Link to='/list' className="float-right border-2 border-green-500 bg-green-200 p-4">
+      <Link to='/list' className="float-right bg-black text-white p-4">
         My List
       </Link>
       <Link to="/">
-        <button className="float-right border-2 border-red-500 bg-red-200 p-4"
+        <button className="float-right border-2 border-red-400 bg-black text-white p-4"
                 onClick={() => {
                                   fire.logout()
                                   checkInitialization()
@@ -100,13 +100,11 @@ if(firebaseInitialized !== false)
 return (
   <div className="App">
     <header className="w-full bg-black pb-4 mb-6">
-      <Link to='/' className="float-right border-2 border-green-500 bg-green-200 p-4">
+      <Link to='/' className="float-right font-bold bg-black text-white p-4">
         Home
       </Link>
-      {loggedIn ? loggedInLinks : loggedOutLinks}
-      <Link to="/">
-        <SearchBar handleKeyPress={handleKeyPress}/>
-      </Link>      
+      {loggedIn ? loggedInLinks : loggedOutLinks} 
+      <SearchBar handleKeyPress={handleKeyPress}/> 
     </header>
 
     <Switch>       

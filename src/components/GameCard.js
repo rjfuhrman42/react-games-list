@@ -45,7 +45,8 @@ function GameCard({data, isLoggedIn}) {
                             }}
                        currClass="hidden-contents"
                             >
-                    Add to list ➕
+                    Add to list <span role="img">➕</span>
+                    
                 </Modal>
                 : 
                 <h1 className="hidden-contents">Log in to rate this game!</h1>}
