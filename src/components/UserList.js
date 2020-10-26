@@ -119,8 +119,8 @@ function UserList() {
 
 
     return (
-        <table className="bg-gray-700 text-gray-300 w-1/2 m-auto">
-            <thead className="bg-black text-white rounded">
+        <table className="bg-blue-700 text-blue-100 w-1/2 m-auto mt-2">
+            <thead className="bg-blue-600 text-white rounded">
                 <tr>
                     <th scope="col">Image</th>
                     <th scope="col">

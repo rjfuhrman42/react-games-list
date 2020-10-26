@@ -5,6 +5,10 @@ import GamesList from './components/GamesList'
 import Login from './components/Login'
 import UserList from "./components/UserList"
 
+import { FaReact } from 'react-icons/fa'
+import { IconContext } from "react-icons";
+
+
 import './assets/full.css'
 
 import {
@@ -69,10 +73,10 @@ function App() {
 
   var loggedOutLinks = (
     <div>
-        <Link to='/login' className="float-right border-2 border-gray-900 bg-gray-700 p-4 text-white">
+        <Link to='/login' className="float-right border-2 border-gray-900 bg-blue-700 p-4 text-blue-100">
           Log In
         </Link>
-        <Link to='/register' className="float-right border-2 border-gray-900 bg-gray-700 p-4 text-white">
+        <Link to='/register' className="float-right border-2 border-gray-900 bg-blue-700 p-4 text-blue-100">
           Create an account
         </Link>
     </div>
@@ -80,17 +84,17 @@ function App() {
 
   var loggedInLinks = (
     <div>
-      <Link to='/list' className="float-right bg-black text-white p-4">
-        My List
-      </Link>
       <Link to="/">
-        <button className="float-right border-2 border-red-400 bg-black text-white p-4"
+        <button className="float-right bg-blue-600 text-blue-100 p-4"
                 onClick={() => {
                                   fire.logout()
                                   checkInitialization()
                                   }}>
                 Log out
         </button>
+      </Link>
+      <Link to='/list' className="float-right bg-blue-600 text-blue-100 p-4">
+        My List
       </Link>
     </div>
   )
@@ -99,9 +103,15 @@ function App() {
 if(firebaseInitialized !== false)
 return (
   <div className="App">
-    <header className="w-full bg-black pb-4 mb-6">
-      <Link to='/' className="float-right font-bold bg-black text-white p-4">
-        Home
+    <header className="w-full bg-blue-400 p-2 block">
+      <Link to='/' className="float-left font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center m-auto justify-around">
+
+        <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
+            <FaReact />
+        </IconContext.Provider>
+
+        <h2 className="text-xl">React Games List</h2>
+      
       </Link>
       {loggedIn ? loggedInLinks : loggedOutLinks} 
       <SearchBar handleKeyPress={handleKeyPress}/> 

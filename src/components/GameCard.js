@@ -23,7 +23,7 @@ function GameCard({data, isLoggedIn}) {
 
     return (
         <div className="game-card" style={background}>
-            <div className="title-container">
+            <div className="title-container bg-blue-600">
                 <h4 className="h-10 mt-4 text-center" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
                 <p className="hidden-contents">Genres: {genres}</p>
                 <p className="hidden-contents">Release: {data.released}</p>
@@ -50,7 +50,7 @@ function GameCard({data, isLoggedIn}) {
                 </Modal>
                 : 
                 <h1 className="hidden-contents">Log in to rate this game!</h1>}
-                <a className="hidden-contents bg-blue-600" href={'https://rawg.io/games/' + data.slug} target="_blank"> View on RAWG.io</a>
+                <a className="hidden-contents bg-blue-500" href={'https://rawg.io/games/' + data.slug} target="_blank"> View on RAWG.io</a>
             </div>
         </div>
     )

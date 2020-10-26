@@ -22,7 +22,6 @@
     height: 14%;
     width: 100%;
     font-size: large;
-    background-color: black;
     margin: 0 auto;
     transition: width 0.2s, height 0.2s ease;
     cursor: pointer;
