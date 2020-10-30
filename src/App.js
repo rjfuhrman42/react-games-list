@@ -84,17 +84,17 @@ function App() {
 
   var loggedInLinks = (
     <div>
-      <Link to="/">
-        <button className="float-right bg-blue-600 text-blue-100 p-4"
+      <Link to='/list' className="mr-2 bg-blue-600 text-blue-100 p-4 hover:bg-blue-800">
+        My List
+      </Link>
+      <Link to="/" className="bg-blue-600 text-blue-100 p-4 hover:bg-blue-800">
+        <button
                 onClick={() => {
                                   fire.logout()
                                   checkInitialization()
                                   }}>
                 Log out
         </button>
-      </Link>
-      <Link to='/list' className="float-right bg-blue-600 text-blue-100 p-4">
-        My List
       </Link>
     </div>
   )
@@ -103,18 +103,18 @@ function App() {
 if(firebaseInitialized !== false)
 return (
   <div className="App">
-    <header className="w-full bg-blue-400 p-2 block">
-      <Link to='/' className="float-left font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center m-auto justify-around">
+    <header className="w-full bg-blue-400 p-2 flex justify-between items-center">
+      <Link to='/' className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around">
 
         <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
             <FaReact />
         </IconContext.Provider>
 
-        <h2 className="text-xl">React Games List</h2>
+        <h2 className="text-xl hover:text-blue-800">React Games List</h2>
       
       </Link>
-      {loggedIn ? loggedInLinks : loggedOutLinks} 
       <SearchBar handleKeyPress={handleKeyPress}/> 
+      {loggedIn ? loggedInLinks : loggedOutLinks}
     </header>
 
     <Switch>       
