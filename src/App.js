@@ -6,6 +6,7 @@ import Login from './components/Login'
 import UserList from "./components/UserList"
 
 import { FaReact } from 'react-icons/fa'
+import { BsList } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 
 
@@ -40,7 +41,9 @@ function App() {
           let term = search.value
   
           getGamesData(`https://api.rawg.io/api/games?search=${term}`)
+          // <Redirect to="/"/>
       }
+      
   }
 
   function getGamesData(api_url) {
@@ -83,11 +86,17 @@ function App() {
   )
 
   var loggedInLinks = (
-    <div>
-      <Link to='/list' className="mr-2 bg-blue-600 text-blue-100 p-4 hover:bg-blue-800">
-        My List
+    <div className="w-64 flex justify-between items-center">
+      <Link to='/list' className="mr-2 text-blue-100 p-4 flex justify-between items-center hover:bg-blue-800">
+
+        <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+            <BsList />
+        </IconContext.Provider> 
+
+        <div className="pb-1 pl-2 text-xl">My List</div>
+
       </Link>
-      <Link to="/" className="bg-blue-600 text-blue-100 p-4 hover:bg-blue-800">
+      <Link to="/" className="bg-blue-600 text-blue-100 text-xl p-4 hover:bg-blue-800">
         <button
                 onClick={() => {
                                   fire.logout()
