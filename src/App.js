@@ -46,7 +46,8 @@ function App() {
       
   }
 
-  function getGamesData(api_url) {
+  function getGamesData(ordering) {
+    const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-${ordering}` 
     fetch(api_url,
       {
           headers : {
@@ -54,7 +55,7 @@ function App() {
       }})
       .then(data => data.json())
       .then(games => {
-        setGames(games.results)})
+      setGames(games.results)})
   }
 
   // relevancy is defined by games released 2 months prior to current month, up to the end of the year
@@ -62,8 +63,8 @@ function App() {
   useEffect(() => {
     checkInitialization()
 
-    const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-relevance` 
-    getGamesData(api_url)
+    // const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-released` 
+    getGamesData("relevance")
 
   }, [])
 
@@ -96,7 +97,7 @@ function App() {
         <div className="pb-1 pl-2 text-xl">My List</div>
 
       </Link>
-      <Link to="/" className="bg-blue-600 text-blue-100 text-xl p-4 hover:bg-blue-800">
+      <Link to="/" className="bg-blue-600 text-blue-100 text-xl p-4 hover:bg-red-800">
         <button
                 onClick={() => {
                                   fire.logout()
@@ -128,7 +129,7 @@ return (
 
     <Switch>       
       <Route exact path="/">
-        <GamesList games={games} isLoggedIn={loggedIn}/>
+        <GamesList games={games} getData={getGamesData} isLoggedIn={loggedIn}/>
       </Route>
       <Route path="/login">
         {loggedIn ? <Redirect to="/"/> : <Login checkInitialization={checkInitialization}/>}
