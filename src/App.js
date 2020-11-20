@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 import GamesList from './components/GamesList'
 import Login from './components/Login'
 import UserList from "./components/UserList"
+import SortTab from "./components/SortTab"
 
 import { FaReact } from 'react-icons/fa'
 import { BsList } from 'react-icons/bs'
@@ -23,6 +24,7 @@ import Register from './components/Register';
 
 function App() {
   const [games, setGames] = useState([])
+  const [isSearch, setIsSearch] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [firebaseInitialized, setFirebaseInitialized] = useState(false)
 
@@ -37,17 +39,21 @@ function App() {
   {
       if(event.key === 'Enter')
       {
+          setIsSearch(true)                             // now in a "searched for game" state
+
           let search = document.getElementById('search')
           let term = search.value
   
-          getGamesData(`https://api.rawg.io/api/games?search=${term}`)
+          getGamesData(`https://api.rawg.io/api/games?search=${term}`, true) // this needs to be fixed
           // <Redirect to="/"/>
       }
       
   }
 
-  function getGamesData(ordering) {
-    const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-${ordering}` 
+  function getGamesData(params, isSearch) {
+
+    const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-${params}` 
+    
     fetch(api_url,
       {
           headers : {
@@ -129,7 +135,9 @@ return (
 
     <Switch>       
       <Route exact path="/">
-        <GamesList games={games} getData={getGamesData} isLoggedIn={loggedIn}/>
+        <GamesList games={games} isLoggedIn={loggedIn}>
+          <SortTab getData={getGamesData} disableSelection={isSearch} />
+        </GamesList>
       </Route>
       <Route path="/login">
         {loggedIn ? <Redirect to="/"/> : <Login checkInitialization={checkInitialization}/>}
