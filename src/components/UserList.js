@@ -49,9 +49,9 @@ function UserList() {
                             <td className="image-col" style={{backgroundImage: `url('${image}')`,}}>
                                 
                             </td>
-                            <td className="pl-4">
+                            <td className="pl-4 text-blue-100">
                                 {title}
-                                <Modal currClass="float-right pr-2"
+                                <Modal currClass="float-right"
                                        game={game}
                                 >
                                 Edit
@@ -124,10 +124,10 @@ function UserList() {
                 <tr>
                     <th scope="col">Image</th>
                     <th scope="col">
-                        <button className="hover:text-blue-400" onClick={() => sortGames("title")}>Title</button>
+                        <button className="hover:text-orange-300" onClick={() => sortGames("title")}>Title</button>
                     </th>
                     <th scope="col">
-                        <button className="hover:text-blue-400" onClick={() => sortGames("rating")}>Rating</button> 
+                        <button className="hover:text-orange-300" onClick={() => sortGames("rating")}>Rating</button> 
                     </th>
                 </tr>
             </thead>
