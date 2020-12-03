@@ -10,7 +10,7 @@ function SortTab({getData, disableSelection}) {
     const selector = 
     (
         <div>
-            <label for="sort">Sort by: </label>
+            <label htmlFor="sort">Sort by: </label>
             <select name="sort" onChange={(e) => handleChange(e)} id="sort">       
                 <option value="relevance">Popularity</option>
                 <option value="released">Release Date</option>

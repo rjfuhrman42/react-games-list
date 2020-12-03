@@ -19,21 +19,24 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { withRouter } from "react-router";
 
 import Register from './components/Register';
 
-function App() {
+function App(props) {
   const [games, setGames] = useState([])
   const [isSearch, setIsSearch] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [firebaseInitialized, setFirebaseInitialized] = useState(false)
 
+  const { history } = props         // gives us acccess to the history object
+                                    // so that when a user searches for a game while looking at their list
+                                    // it will bring them back to the main page after hitting enter
+
   const date = new Date(Date.now())
-
   const year = date.getFullYear()
-
   let month = date.getMonth() - 1
-  month = month > 10 ? month : `0${month}`
+  month = month > 9 ? month : `0${month}`
 
   const handleKeyPress = (event) =>
   {
@@ -43,9 +46,9 @@ function App() {
 
           let search = document.getElementById('search')
           let term = search.value
-  
+
+          history.push('/')
           getGamesData(`https://api.rawg.io/api/games?search=${term}`, true) // this needs to be fixed
-          // <Redirect to="/"/>
       }
       
   }
@@ -95,7 +98,6 @@ function App() {
   var loggedInLinks = (
     <div className="w-64 flex justify-between items-center">
       <Link to='/list' className="mr-2 text-blue-100 p-4 flex justify-between items-center hover:bg-blue-800">
-
         <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
             <BsList />
         </IconContext.Provider> 
@@ -121,6 +123,7 @@ return (
   <div className="App">
     <header className="w-full bg-blue-400 p-2 flex justify-between items-center">
       <Link to='/' className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around">
+        
 
         <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
             <FaReact />
@@ -159,4 +162,4 @@ else return (
   )
 }
 
-export default App;
+export default withRouter(App);
