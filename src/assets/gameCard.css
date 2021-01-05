@@ -32,8 +32,8 @@
 .hidden-contents {
     color: white;
     opacity: 0;
-    font-size: 14px;
     display: none;
+    font-size: 14px;
 }
 
 .button{
@@ -54,7 +54,6 @@
 
 .title-container:hover .hidden-contents {
     opacity: 100%;
-    transition: opacity 0.2s ease;
     display: block;
 }
 

@@ -3,6 +3,8 @@ import Modal from './Modal'
 import fire from "../config/fire"
 
 import '../assets/gameCard.css'
+import { FaExternalLinkSquareAlt } from "react-icons/fa"
+import { IconContext } from "react-icons";
 
 function GameCard({data, isLoggedIn}) {
 
@@ -30,7 +32,7 @@ function GameCard({data, isLoggedIn}) {
 
                 {fire.auth.currentUser ? inList ?  
                  <button
-                    className="inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                    className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     style={{ transition: "all .15s ease" }}
                  >
@@ -50,7 +52,11 @@ function GameCard({data, isLoggedIn}) {
                 </Modal>
                 : 
                 <h1 className="hidden-contents">Log in to rate this game!</h1>}
-                <a className="hidden-contents bg-blue-500" href={'https://rawg.io/games/' + data.slug} target="_blank"> View on RAWG.io</a>
+                <a className="hidden-contents inline font-bold uppercase text-sm text-center px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-gray-800" 
+                   href={'https://rawg.io/games/' + data.slug} 
+                   target="_blank">
+                    View on RAWG.io 
+                 </a>
             </div>
         </div>
     )

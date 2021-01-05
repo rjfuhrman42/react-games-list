@@ -7,6 +7,8 @@ function SortTab({getData, disableSelection}) {
         getData(ordering)                                           // either need to move all the games logic in here somehow (would need to use context or something)
     }        
 
+    console.log(disableSelection)
+
     const selector = 
     (
         <div>

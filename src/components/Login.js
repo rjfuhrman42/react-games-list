@@ -18,7 +18,7 @@ function Login({checkInitialization}) {
 
     return (
         <div>
-            <div className="bg-gray-700 w-64 rounded text-white m-auto mt-4 p-4">
+            <div className="bg-blue-700 w-64 rounded text-white m-auto mt-4 p-4">
                 <form>
                     <h3>Email</h3>
                     <input className="border-2 border-black text-black" 

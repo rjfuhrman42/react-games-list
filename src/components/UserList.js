@@ -89,14 +89,17 @@ function UserList() {
 
         switch(type) {
             case "rating":
-                sorted = usersGames.sort((curr, next) => {
+              sorted = usersGames.sort((curr, next) => {
                     return ascending ? curr.rating - next.rating : next.rating - curr.rating     // when sorting by rating the 4th game down gets changed no matter what?
                 })
               break;
             case "title":
                 sorted = usersGames.sort((curr, next) => {
-                    return ascending ? curr.title < next.title : next.title < curr.title     
+                    if(ascending) return curr.title > next.title ? 1 : -1 
+                    else return next.title < curr.title ? -1 : 1
+                    // return ascending ? curr.title < next.title : next.title < curr.title     
                 })
+               console.log(sorted, "here")
               break;
             default:
               return

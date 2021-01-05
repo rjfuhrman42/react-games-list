@@ -25,6 +25,7 @@ import Register from './components/Register';
 
 function App(props) {
   const [games, setGames] = useState([])
+  const [loading, setLoading] = useState(true)
   const [isSearch, setIsSearch] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [firebaseInitialized, setFirebaseInitialized] = useState(false)
@@ -43,6 +44,7 @@ function App(props) {
       if(event.key === 'Enter')
       {
           setIsSearch(true)                             // now in a "searched for game" state
+          setLoading(true)
 
           let search = document.getElementById('search')
           let term = search.value
@@ -54,9 +56,7 @@ function App(props) {
   }
 
   function getGamesData(params, isSearch) {
-
     const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-${params}` 
-    
     fetch(api_url,
       {
           headers : {
@@ -64,7 +64,9 @@ function App(props) {
       }})
       .then(data => data.json())
       .then(games => {
-      setGames(games.results)})
+      setGames(games.results)
+      setLoading(false)
+    })
   }
 
   // relevancy is defined by games released 2 months prior to current month, up to the end of the year
@@ -85,11 +87,12 @@ function App(props) {
   }
 
   var loggedOutLinks = (
-    <div>
-        <Link to='/login' className="float-right border-2 border-gray-900 bg-blue-700 p-4 text-blue-100">
+    <div className="w-72 flex justify-between items-center text-white mr-8">
+        <Link to='/login' className="float-right bg-blue-700 p-4 text-blue-100 hover:bg-blue-800">
           Log In
         </Link>
-        <Link to='/register' className="float-right border-2 border-gray-900 bg-blue-700 p-4 text-blue-100">
+        or
+        <Link to='/register' className="float-right bg-blue-700 p-4 text-blue-100 hover:bg-blue-800">
           Create an account
         </Link>
     </div>
@@ -138,7 +141,7 @@ return (
 
     <Switch>       
       <Route exact path="/">
-        <GamesList games={games} isLoggedIn={loggedIn}>
+        <GamesList games={games} isLoggedIn={loggedIn} isLoading={loading}>
           <SortTab getData={getGamesData} disableSelection={isSearch} />
         </GamesList>
       </Route>
