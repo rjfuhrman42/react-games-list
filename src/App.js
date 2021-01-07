@@ -45,7 +45,6 @@ function App(props) {
   {
       if(event.key === 'Enter')
       {
-          setIsSearch(true)                             // now in a "searched for game" state
           setLoading(true)
 
           let search = document.getElementById('search')
@@ -58,7 +57,7 @@ function App(props) {
   }
 
   function getGamesData(params, isSearch) {
-    const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year - 1}-${month}-01,${year}-12-31&ordering=-${params}` 
+    const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-${params}` 
     fetch(api_url,
       {
           headers : {
@@ -66,6 +65,7 @@ function App(props) {
       }})
       .then(data => data.json())
       .then(games => {
+      setIsSearch(isSearch)                                                          // now in a "searched for game" state
       setGames(games.results)
       setLoading(false)
     })
@@ -89,7 +89,7 @@ function App(props) {
   }
 
   var loggedOutLinks = (
-    <div className="w-72 flex justify-between items-center text-white mr-8">
+    <div className="w-72 flex justify-between items-center text-white">
         <Link to='/login' className="float-right bg-blue-700 p-4 text-blue-100 hover:bg-blue-800">
           Log In
         </Link>
@@ -127,7 +127,7 @@ if(firebaseInitialized !== false)
 return (
   <div className="App">
     <header className="w-full bg-blue-400 p-2 flex justify-between items-center">
-      <Link to='/' className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around">
+      <Link to='/' className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" onClick={() => getGamesData('added', false)}>
         
 
         <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
@@ -137,13 +137,12 @@ return (
         <h2 className="text-xl hover:text-blue-800">React Games List</h2>
       
       </Link>
-      <SearchBar handleKeyPress={handleKeyPress}/> 
       {loggedIn ? loggedInLinks : loggedOutLinks}
     </header>
-
     <Switch>       
       <Route exact path="/">
         <GamesList games={games} isLoggedIn={loggedIn} isLoading={loading}>
+          <SearchBar handleKeyPress={handleKeyPress}/> 
           <SortTab getData={getGamesData} disableSelection={isSearch} />
         </GamesList>
       </Route>

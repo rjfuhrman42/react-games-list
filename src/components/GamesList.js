@@ -8,11 +8,11 @@ const override = css`
     margin-top: 2em;
 
 `
-
+// flex flex-1 flex-wrap flex-row m-auto justify-center ---> the old flex css
+// grid???
 function GamesList({children, games, isLoggedIn, isLoading}) {
-    console.log(isLoading)
     return(
-        <div className="flex flex-1 flex-wrap flex-row m-auto justify-center w-5/6 h-full">
+        <div className="grid grid-cols-4 w-9/12 h-full m-auto">
         {children}
         {
             isLoading ? 

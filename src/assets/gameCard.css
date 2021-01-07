@@ -5,9 +5,9 @@
 } */
 
 .game-card {
-    width: 16vw;
+
     height: 26em;
-    margin: 0.5em;
+    margin: 1rem;
     color: white;
     background-position: center;
     background-size: cover;
