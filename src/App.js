@@ -36,7 +36,9 @@ function App(props) {
 
   const date = new Date(Date.now())
   const year = date.getFullYear()
-  let month = date.getMonth() - 1
+  let month = date.getUTCMonth() + 1
+  let day = date.getUTCDate()
+
   month = month > 9 ? month : `0${month}`
 
   const handleKeyPress = (event) =>
@@ -56,7 +58,7 @@ function App(props) {
   }
 
   function getGamesData(params, isSearch) {
-    const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-${params}` 
+    const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year - 1}-${month}-01,${year}-12-31&ordering=-${params}` 
     fetch(api_url,
       {
           headers : {
@@ -75,7 +77,7 @@ function App(props) {
     checkInitialization()
 
     // const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-released` 
-    getGamesData("relevance")
+    getGamesData("added")
 
   }, [])
 

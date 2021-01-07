@@ -17,25 +17,26 @@ function Login({checkInitialization}) {
     // }
 
     return (
-        <div>
-            <div className="bg-blue-700 w-64 rounded text-white m-auto mt-4 p-4">
-                <form>
+        <div className="absolute flex justify-center mt-20 items-center content-around w-full sm:mt-0">
+            <div className="bg-white rounded w-10/12 shadow-xl text-black mt-16 p-12 flex flex-col content-around sm:w-xtra sm:p-20 ">
+                <h1 className="text-3xl font-bold mb-6 leading-none">Login</h1>
+                <form className="mb-6">
                     <h3>Email</h3>
-                    <input className="border-2 border-black text-black" 
+                    <input className="border border-rounded rounded-md border-grey h-14 w-full text-black p-2 mb-6" 
                            type="email"
                            placeholder="enter email address"
                            onChange={(e) => setEmail(e.target.value)}
                            value={email}
                     />
                     <h3>Password</h3>
-                    <input className="border-2 border-black text-black" 
+                    <input className="border border-rounded rounded-md border-grey h-14 w-full text-black p-2 mb-6" 
                            type="password"
                            placeholder="enter password"
-                           onChange={(e) => setPassword(e.target.value)}                      // this cant be okay....
+                           onChange={(e) => setPassword(e.target.value)}                    // this cant be okay....
                            value={password}
                            />
                 </form>
-                <button className="bg-blue-500 p-2 m-2" onClick={login}>Log In</button>
+                <button onClick={login} className="bg-blue-500 border border-rounded rounded-md p-2 text-white hover:bg-blue-400">Login</button>
             </div>
         </div>
     )    
