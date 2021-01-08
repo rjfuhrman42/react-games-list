@@ -6,13 +6,16 @@ import SyncLoader from "react-spinners/SyncLoader";
 const override = css`
     display: block;
     margin-top: 2em;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    justify-self: center;
 
 `
 // flex flex-1 flex-wrap flex-row m-auto justify-center ---> the old flex css
 // grid???
 function GamesList({children, games, isLoggedIn, isLoading}) {
     return(
-        <div className="grid grid-cols-4 w-9/12 h-full m-auto">
+        <div className="grid grid-cols-4 w-9/12 pt-4 h-full m-auto">
         {children}
         {
             isLoading ? 

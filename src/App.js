@@ -102,7 +102,7 @@ function App(props) {
 
   var loggedInLinks = (
     <div className="w-64 flex justify-between items-center">
-      <Link to='/list' className="mr-2 text-blue-100 p-4 flex justify-between items-center hover:bg-blue-800">
+      <Link to='/list' className="mr-2 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800">
         <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
             <BsList />
         </IconContext.Provider> 
@@ -110,7 +110,7 @@ function App(props) {
         <div className="pb-1 pl-2 text-xl">My List</div>
 
       </Link>
-      <Link to="/" className="bg-blue-600 text-blue-100 text-xl p-4 hover:bg-red-800">
+      <Link to="/" className="bg-blue-600 text-blue-100 text-xl p-4 rounded-lg hover:bg-red-800">
         <button
                 onClick={() => {
                                   fire.logout()
