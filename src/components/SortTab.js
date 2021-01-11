@@ -13,7 +13,7 @@ function SortTab({getData, disableSelection}) {
     (
         <div>
             <label htmlFor="sort">Sort by: </label>
-            <select name="sort" onChange={(e) => handleChange(e)} id="sort">       
+            <select name="sort" className="bg-blue-200 border rounded-xl" onChange={(e) => handleChange(e)} id="sort">       
                 <option value="relevance">Popularity</option>
                 <option value="released">Release Date</option>
             </select>           

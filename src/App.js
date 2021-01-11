@@ -126,7 +126,7 @@ function App(props) {
 if(firebaseInitialized !== false)
 return (
   <div className="App">
-    <header className="w-full bg-blue-400 p-2 flex justify-between items-center">
+    <header className="w-full shadow-xl bg-blue-400 p-2 flex justify-between items-center">
       <Link to='/' className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" onClick={() => getGamesData('added', false)}>
         
 

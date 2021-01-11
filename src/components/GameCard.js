@@ -26,37 +26,39 @@ function GameCard({data, isLoggedIn}) {
     return (
         <div className="game-card" style={background}>
             <div className="title-container bg-blue-600">
-                <h4 className="h-10 mt-4 text-center" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
-                <p className="hidden-contents">Genres: {genres}</p>
-                <p className="hidden-contents">Release: {data.released}</p>
+            <h4 className="h-10 mt-4 text-center" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
+                <div className="m-auto text-left">
+                    <p className="hidden-contents">{genres}</p>
+                    <p className="hidden-contents">{data.released}</p>
 
-                {fire.auth.currentUser ? inList ?  
-                 <button
-                    className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    style={{ transition: "all .15s ease" }}
-                 >
-                    In List ✔
-                 </button>
-                :                                                               // This may need to be cleaned up for readability ... 
-                <Modal onClick={() => setInList(true)} 
-                       game={{
-                                image: image,
-                                title: title,
-                                genres: genres
-                            }}
-                       currClass="hidden-contents"
-                            >
-                    Add to list <span role="img">➕</span>
-                    
-                </Modal>
-                : 
-                <h1 className="hidden-contents">Log in to rate this game!</h1>}
-                <a className="hidden-contents inline font-bold uppercase text-sm text-center px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-gray-800" 
-                   href={'https://rawg.io/games/' + data.slug} 
-                   target="_blank">
-                    View on RAWG.io 
-                 </a>
+                    {fire.auth.currentUser ? inList ?  
+                    <button
+                        className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        type="button"
+                        style={{ transition: "all .15s ease" }}
+                    >
+                        In List ✔
+                    </button>
+                    :                                                               // This may need to be cleaned up for readability ... 
+                    <Modal onClick={() => setInList(true)} 
+                        game={{
+                                    image: image,
+                                    title: title,
+                                    genres: genres
+                                }}
+                        currClass="hidden-contents"
+                                >
+                        Add to list <span role="img">➕</span>
+                        
+                    </Modal>
+                    : 
+                    <h1 className="hidden-contents">Log in to rate this game!</h1>}
+                    <a className="hidden-contents inline font-bold uppercase text-sm text-center px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-gray-800" 
+                    href={'https://rawg.io/games/' + data.slug} 
+                    target="_blank">
+                        View on RAWG.io 
+                    </a>
+                 </div>
             </div>
         </div>
     )
