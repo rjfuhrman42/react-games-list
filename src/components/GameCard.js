@@ -26,8 +26,8 @@ function GameCard({data, isLoggedIn}) {
     return (
         <div className="game-card" style={background}>
             <div className="title-container bg-blue-600">
-                <div className="m-4 text-left">
-                    <h4 className="h-10" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
+            <h4 className="h-10 m-4 mb-0" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
+                <div className="inner-container">
                     <p className="hidden-contents">{genres}</p>
                     <p className="hidden-contents">{data.released}</p>
                     <div className="grid grid-cols-2 mt-6">

@@ -1,5 +1,6 @@
 import React from "react";
 import fire from "../config/fire"
+import '../assets/gameCard.css'
 
 function Modal({onClick, game, currClass, children}) {
   const [showModal, setShowModal] = React.useState(false);
@@ -23,7 +24,6 @@ function Modal({onClick, game, currClass, children}) {
       <button
         className={currClass + " font-bold bg-gray-700 text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"}
         type="button"
-        style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}
       >
         {children}

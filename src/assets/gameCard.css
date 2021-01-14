@@ -31,8 +31,10 @@
 .hidden-contents {
     color: white;
     opacity: 0;
-    display: none;
+    position:absolute;
     font-size: 14px;
+    pointer-events: none;
+    transition: opacity 0.1s;
 }
 
 .button{
@@ -41,6 +43,11 @@
 
 .inList {
     background: rgba(107, 107, 107, 0.63);
+}
+
+.inner-container {
+    margin: 0;
+    text-align: left;
 }
 
 /* .game-card:hover {
@@ -52,8 +59,14 @@
 }
 
 .title-container:hover .hidden-contents {
-    opacity: 100%;
-    display: block;
+    opacity: 1;
+    position: static;
+    transition: opacity 1s;
+    pointer-events: all;
+}
+
+.title-container:hover .inner-container {
+    margin: 0rem 1rem 1rem 1rem;
 }
 
 
