@@ -17,6 +17,7 @@
 
 .title-container{ 
     position: absolute;
+    display: block;
     bottom: 0;
     height: 14%;
     width: 100%;

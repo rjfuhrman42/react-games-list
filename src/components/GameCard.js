@@ -1,10 +1,8 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import Modal from './Modal'
 import fire from "../config/fire"
 
 import '../assets/gameCard.css'
-import { FaExternalLinkSquareAlt } from "react-icons/fa"
-import { IconContext } from "react-icons";
 
 function GameCard({data, isLoggedIn}) {
 
@@ -26,7 +24,8 @@ function GameCard({data, isLoggedIn}) {
     return (
         <div className="game-card" style={background}>
             <div className="title-container bg-blue-600">
-            <h4 className="h-10 m-4 mb-0" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
+              <p className="float-right m-2 mb-0 bg-blue-800 p-2">{data.metacritic}</p>
+              <h4 className="h-10 m-4 mb-0 w-3/4" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
                 <div className="inner-container">
                     <p className="hidden-contents">{genres}</p>
                     <p className="hidden-contents">{data.released}</p>
@@ -44,7 +43,7 @@ function GameCard({data, isLoggedIn}) {
                             game={{
                                         image: image,
                                         title: title,
-                                        genres: genres
+                                        genres: genres,
                                     }}
                             currClass="hidden-contents"
                                     >
