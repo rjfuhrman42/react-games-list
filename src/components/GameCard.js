@@ -10,7 +10,9 @@ function GameCard({data, isLoggedIn}) {
     const [title, setTitle] = useState(data.name)
     const [genres, setGenres] = useState(data.genres.map(genre => `${genre.name} `))
     const [inList, setInList] = useState()
-    
+
+    const ratingColor = data.metacritic >= 70 ? "green" : "yellow"
+    const ratingStyle = `float-right m-2 mb-0 bg-blue-800 text-${ratingColor}-400 border border-${ratingColor}-400 font-semibold p-2`
     const background = {
         backgroundImage: `url('${image}')`,
     }
@@ -24,7 +26,7 @@ function GameCard({data, isLoggedIn}) {
     return (
         <div className="game-card" style={background}>
             <div className="title-container bg-blue-600">
-              <p className="float-right m-2 mb-0 bg-blue-800 p-2">{data.metacritic}</p>
+              {data.metacritic ? <p className={ratingStyle}>{data.metacritic}</p> : <p></p>}
               <h4 className="h-10 m-4 mb-0 w-3/4" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
                 <div className="inner-container">
                     <p className="hidden-contents">{genres}</p>
