@@ -51,6 +51,10 @@
     text-align: left;
 }
 
+.rating {
+    padding-top: 0.34em;
+}
+
 /* .game-card:hover {
     width: 17vw;
 } */
