@@ -2,9 +2,12 @@ import React from "react"
 
 function SortTab({getData, disableSelection}) {
 
+    const date = new Date(Date.now())
+    const year = date.getFullYear()
+
     const handleChange = (event) => {
         let ordering = event.target.value
-        getData(ordering)                                           // either need to move all the games logic in here somehow (would need to use context or something)
+        getData(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-${ordering}`)                                           // either need to move all the games logic in here somehow (would need to use context or something)
     }        
 
     console.log(disableSelection)

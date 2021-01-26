@@ -8,7 +8,7 @@ function GameCard({data, isLoggedIn}) {
 
     const [image, setImage] = useState(data.background_image)
     const [title, setTitle] = useState(data.name)
-    const [genres, setGenres] = useState(data.genres.map(genre => `${genre.name} `))
+    const [genres, setGenres] = useState(data.genres.map((genre, index) => index > 0 ? `, ${genre.name}` : `${genre.name}`))
     const [inList, setInList] = useState()
 
     const ratingColor = data.metacritic >= 70 ? "green" : "yellow"

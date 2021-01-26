@@ -25,9 +25,11 @@ import Register from './components/Register';
 
 function App(props) {
   const [games, setGames] = useState([])
+  const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
   const [isSearch, setIsSearch] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [apiURL, setApiURL] = useState()
   const [firebaseInitialized, setFirebaseInitialized] = useState(false)
 
   const { history } = props         // gives us acccess to the history object
@@ -36,10 +38,6 @@ function App(props) {
 
   const date = new Date(Date.now())
   const year = date.getFullYear()
-  let month = date.getUTCMonth() + 1
-  let day = date.getUTCDate()
-
-  month = month > 9 ? month : `0${month}`
 
   const handleKeyPress = (event) =>
   {
@@ -51,14 +49,14 @@ function App(props) {
           let term = search.value
 
           history.push('/')
-          getGamesData(`https://api.rawg.io/api/games?search=${term}`, true) // this needs to be fixed
+          setApiURL(`https://api.rawg.io/api/games?search=${term}`)
       }
       
   }
 
-  function getGamesData(params, isSearch) {
-    const api_url = isSearch ? params : `https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-${params}` 
-    fetch(api_url,
+  function getGamesData() {
+
+    fetch(apiURL,
       {
           headers : {
               'User-Agent': 'react-games-list / personal use project'
@@ -66,6 +64,7 @@ function App(props) {
       .then(data => data.json())
       .then(games => {
       setIsSearch(isSearch)                                                          // now in a "searched for game" state
+
       setGames(games.results)
       setLoading(false)
     })
@@ -76,10 +75,20 @@ function App(props) {
   useEffect(() => {
     checkInitialization()
 
-    // const api_url = `https://api.rawg.io/api/games?dates=${year}-${month}-01,${year}-12-31&ordering=-released` 
-    getGamesData("added")
+    setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added`)
 
   }, [])
+
+  useEffect(() => getGamesData(), [apiURL])
+
+  function changePage() {
+    setPage(prev => prev += 1)
+
+    if(page === 1) {
+      setApiURL(prev => prev + `&page=${page}`)
+    } 
+    else setApiURL(prev => prev.replace(/\d+$/g, page))
+  }
 
   function checkInitialization(){
     fire.isInitialized().then(val => {
@@ -127,7 +136,10 @@ if(firebaseInitialized !== false)
 return (
   <div className="App">
     <header className="w-full shadow-xl bg-blue-400 p-2 flex justify-between items-center">
-      <Link to='/' className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" onClick={() => getGamesData('added', false)}>
+      <Link to='/' 
+            className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" 
+            onClick={() => setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added`)}
+      >
         
 
         <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
@@ -143,7 +155,8 @@ return (
       <Route exact path="/">
         <GamesList games={games} isLoggedIn={loggedIn} isLoading={loading}>
           <SearchBar handleKeyPress={handleKeyPress}/> 
-          <SortTab getData={getGamesData} disableSelection={isSearch} />
+          <SortTab getData={setApiURL} disableSelection={isSearch} />
+          <button className="col-span-4 row-start-7 row-end-7 bg-blue-600 text-white" onClick={() => changePage()} >Next Page {page}</button>
         </GamesList>
       </Route>
       <Route path="/login">
