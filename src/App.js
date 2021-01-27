@@ -25,7 +25,7 @@ import Register from './components/Register';
 
 function App(props) {
   const [games, setGames] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(2)
   const [loading, setLoading] = useState(true)
   const [isSearch, setIsSearch] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
@@ -43,6 +43,7 @@ function App(props) {
   {
       if(event.key === 'Enter')
       {
+          if(page > 2) setPage(2)
           setLoading(true)
 
           let search = document.getElementById('search')
@@ -55,7 +56,7 @@ function App(props) {
   }
 
   function getGamesData() {
-
+    console.log("getting the data!!", apiURL)
     fetch(apiURL,
       {
           headers : {
@@ -64,7 +65,7 @@ function App(props) {
       .then(data => data.json())
       .then(games => {
       setIsSearch(isSearch)                                                          // now in a "searched for game" state
-
+        console.log(games.results)
       setGames(games.results)
       setLoading(false)
     })
@@ -82,12 +83,14 @@ function App(props) {
   useEffect(() => getGamesData(), [apiURL])
 
   function changePage() {
-    setPage(prev => prev += 1)
-
-    if(page === 1) {
+    if(page === 2) {
       setApiURL(prev => prev + `&page=${page}`)
+      setPage(prev => prev += 1)
     } 
-    else setApiURL(prev => prev.replace(/\d+$/g, page))
+    else {
+      setPage(prev => prev += 1)
+      setApiURL(prev => prev.replace(/\d+$/g, page))
+    }
   }
 
   function checkInitialization(){
@@ -138,7 +141,11 @@ return (
     <header className="w-full shadow-xl bg-blue-400 p-2 flex justify-between items-center">
       <Link to='/' 
             className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" 
-            onClick={() => setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added`)}
+            onClick={() => {
+                              if(page > 2) setPage(2)
+                              setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added`)
+                            }
+                          }
       >
         
 
@@ -156,7 +163,7 @@ return (
         <GamesList games={games} isLoggedIn={loggedIn} isLoading={loading}>
           <SearchBar handleKeyPress={handleKeyPress}/> 
           <SortTab getData={setApiURL} disableSelection={isSearch} />
-          <button className="col-span-4 row-start-7 row-end-7 bg-blue-600 text-white" onClick={() => changePage()} >Next Page {page}</button>
+          <button className="col-span-4 row-start-7 row-end-7 bg-blue-600 text-white" onClick={() => changePage()} >Next Page</button>
         </GamesList>
       </Route>
       <Route path="/login">
