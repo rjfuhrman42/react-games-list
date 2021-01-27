@@ -25,7 +25,7 @@ import Register from './components/Register';
 
 function App(props) {
   const [games, setGames] = useState([])
-  const [page, setPage] = useState(2)
+  const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
   const [isSearch, setIsSearch] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
@@ -43,14 +43,14 @@ function App(props) {
   {
       if(event.key === 'Enter')
       {
-          if(page > 2) setPage(2)
+          if(page > 1) setPage(1)
           setLoading(true)
 
           let search = document.getElementById('search')
           let term = search.value
 
           history.push('/')
-          setApiURL(`https://api.rawg.io/api/games?search=${term}`)
+          setApiURL(`https://api.rawg.io/api/games?search=${term}&page=${page}`)
       }
       
   }
@@ -76,21 +76,20 @@ function App(props) {
   useEffect(() => {
     checkInitialization()
 
-    setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added`)
+    setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added&page=${page}`)
 
   }, [])
 
+  useEffect(() => {
+    
+  }, [apiURL])
+
+  useEffect(() => setApiURL(prev => prev.replace(/\d+$/g, page)), [page])
   useEffect(() => getGamesData(), [apiURL])
 
-  function changePage() {
-    if(page === 2) {
-      setApiURL(prev => prev + `&page=${page}`)
-      setPage(prev => prev += 1)
-    } 
-    else {
-      setPage(prev => prev += 1)
-      setApiURL(prev => prev.replace(/\d+$/g, page))
-    }
+  function changePage(next) {
+    if(next) setPage(prev => prev + 1)
+    else if(page > 1) setPage(prev => prev - 1)
   }
 
   function checkInitialization(){
@@ -99,6 +98,15 @@ function App(props) {
       setFirebaseInitialized(val)
     })
   }
+
+  var prevPageButton = page > 1 ? 
+  (
+    <button className="col-span-1 row-start-7 row-end-7 bg-blue-600 text-white m-2" onClick={() => changePage(false)} >Prev Page</button>
+  )
+  :
+  (
+    <button className="col-span-1 row-start-7 row-end-7 bg-blue-100 text-white m-2 cursor-default" ></button>
+  )
 
   var loggedOutLinks = (
     <div className="w-72 flex justify-between items-center text-white">
@@ -142,8 +150,8 @@ return (
       <Link to='/' 
             className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" 
             onClick={() => {
-                              if(page > 2) setPage(2)
-                              setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added`)
+                              if(page > 1) setPage(1)
+                              setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added&page=${page}`)
                             }
                           }
       >
@@ -163,7 +171,9 @@ return (
         <GamesList games={games} isLoggedIn={loggedIn} isLoading={loading}>
           <SearchBar handleKeyPress={handleKeyPress}/> 
           <SortTab getData={setApiURL} disableSelection={isSearch} />
-          <button className="col-span-4 row-start-7 row-end-7 bg-blue-600 text-white" onClick={() => changePage()} >Next Page</button>
+          {prevPageButton}
+          <h2 className="col-start-2 col-end-4 row-start-7 row-end-7 text-center">Page: {page}</h2>
+          <button className="col-span-1 col-start-4 row-start-7 row-end-7 bg-blue-600 text-white m-2" onClick={() => changePage(true)} >Next Page</button>
         </GamesList>
       </Route>
       <Route path="/login">
