@@ -13,19 +13,24 @@ const override = css`
 `
 // flex flex-1 flex-wrap flex-row m-auto justify-center ---> the old flex css
 // grid???
-function GamesList({children, games, isLoggedIn, isLoading}) {
-    return(
+function GamesList({children, games, isLoggedIn, isLoading, search}) {
+
+    if(isLoading) return (
         <div className="grid grid-cols-4 w-9/12 pt-4 h-full m-auto">
-        {children}
-        {
-            isLoading ? 
-                <SyncLoader
+            {search}
+            <SyncLoader
                     css={override}
                     size={15}
                     color={"#60a5fa"}
                     loading={isLoading}
                 /> 
-                : 
+        </div>
+    )
+    else return(
+        <div className="grid pt-4 h-full m-auto 2xl:w-games xl:grid-cols-4 xl:w-full">
+        {search}
+        {children}
+        {  
                 games.map(game => 
                     <GameCard key={game.id} data={game} isLoggedIn={isLoggedIn}/>
                 )

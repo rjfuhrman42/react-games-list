@@ -56,7 +56,7 @@ function App(props) {
   }
 
   function getGamesData() {
-    console.log("getting the data!!", apiURL)
+
     fetch(apiURL,
       {
           headers : {
@@ -65,7 +65,7 @@ function App(props) {
       .then(data => data.json())
       .then(games => {
       setIsSearch(isSearch)                                                          // now in a "searched for game" state
-        console.log(games.results)
+ 
       setGames(games.results)
       setLoading(false)
     })
@@ -121,16 +121,16 @@ function App(props) {
   )
 
   var loggedInLinks = (
-    <div className="w-64 flex justify-between items-center">
-      <Link to='/list' className="mr-2 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800">
+    <div className="flex justify-between text-sm items-center  sm:text-xl text-white">
+      <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
         <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
             <BsList />
         </IconContext.Provider> 
 
-        <div className="pb-1 pl-2 text-xl">My List</div>
+        <div className="p-0 sm:pb-1 pl-2">My List</div>
 
       </Link>
-      <Link to="/" className="bg-blue-600 text-blue-100 text-xl p-4 rounded-lg hover:bg-red-800">
+      <Link to="/" className="bg-blue-600 text-blue-100 p-4 rounded-lg hover:bg-red-800 sm:">
         <button
                 onClick={() => {
                                   fire.logout()
@@ -148,12 +148,12 @@ return (
   <div className="App">
     <header className="w-full shadow-xl bg-blue-400 p-2 flex justify-between items-center">
       <Link to='/' 
-            className="font-bold bg-blue-400 text-blue-100 w-56 h-full flex items-center justify-around" 
-            onClick={() => {
-                              if(page > 1) setPage(1)
-                              setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added&page=${page}`)
-                            }
-                          }
+            className="font-bold bg-blue-400 text-blue-100 w-36 h-full flex items-center justify-around sm:w-56" 
+            // onClick={() => {
+            //                   if(page > 1) setPage(1)
+            //                   setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added&page=${page}`)
+            //                 }
+            //               }
       >
         
 
@@ -161,16 +161,20 @@ return (
             <FaReact />
         </IconContext.Provider>
 
-        <h2 className="text-xl hover:text-blue-800">React Games List</h2>
+        <h2 className="text-sm ml-2 hover:text-blue-800 sm:text-xl">React Games List</h2>
       
       </Link>
       {loggedIn ? loggedInLinks : loggedOutLinks}
     </header>
     <Switch>       
       <Route exact path="/">
-        <GamesList games={games} isLoggedIn={loggedIn} isLoading={loading}>
-          <SearchBar handleKeyPress={handleKeyPress}/> 
-          <SortTab getData={setApiURL} disableSelection={isSearch} />
+        <GamesList games={games} search={<SearchBar handleKeyPress={handleKeyPress}>
+                                          <SortTab getData={setApiURL} reset={setPage} disableSelection={isSearch} />
+                                         </SearchBar>} 
+                   isLoggedIn={loggedIn} 
+                   isLoading={loading}
+        > 
+          
           {prevPageButton}
           <h2 className="col-start-2 col-end-4 row-start-7 row-end-7 text-center">Page: {page}</h2>
           <button className="col-span-1 col-start-4 row-start-7 row-end-7 bg-blue-600 text-white m-2" onClick={() => changePage(true)} >Next Page</button>

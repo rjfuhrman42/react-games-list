@@ -1,14 +1,17 @@
 .image-col{
-    height: 7em;
-    width: 7em;
+    height: 8em;
+    width: 8em;
     background-position: center;
     background-size: cover;
 }
 
 td {
-    border: 2px solid #3182ce;
+    border: 2px solid #5c99d1;
 }
 
 table, th {
-    border: 5px solid #3182ce;
+    border: 2px solid #5c99d1;
 }
+
+/* table { width: 85rem;} */
+
