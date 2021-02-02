@@ -176,7 +176,7 @@ return (
         > 
           
           {prevPageButton}
-          <h2 className="col-start-2 col-end-4 row-start-7 row-end-7 text-center">Page: {page}</h2>
+          <h2 className="col-start-2 col-end-4 row-start-7 row-end-auto text-center">Page: {page}</h2>
           <button className="col-span-1 col-start-4 row-start-7 row-end-7 bg-blue-600 text-white m-2" onClick={() => changePage(true)} >Next Page</button>
         </GamesList>
       </Route>

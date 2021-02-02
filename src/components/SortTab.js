@@ -23,8 +23,8 @@ function SortTab({getData, disableSelection, reset}) {
     )
 
     return (
-        <div className="m-0 w-2/12 h-full float-right">
-            <div className="text-xl h-full w-full float-right">
+        <div className="m-0 w-3/12 h-full float-right sm:w-2/12">
+            <div className="text-sm h-full w-full float-right md:text-xl">
                 {disableSelection ? `Results for "${document.getElementById('search').value}"` : selector}
             </div>
         </div>
