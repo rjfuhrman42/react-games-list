@@ -29,13 +29,17 @@ function GamesList({children, games, isLoggedIn, isLoading, search}) {
     else return(
         <div className="grid grid-cols-1 pt-4 h-full m-auto 2xl:w-games 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xl:w-full">
         {search}
-        {/* {children} */}
+        {children} 
         {  
                 games.map(game => 
                     <GameCard key={game.id} data={game} isLoggedIn={isLoggedIn}/>
                 )
-        }                   
+        } 
+        
+        {children}
+                         
         </div>
+        
     )
 }
 

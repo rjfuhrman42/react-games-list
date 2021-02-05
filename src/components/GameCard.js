@@ -25,7 +25,7 @@ function GameCard({data, isLoggedIn}) {
 
     return (
         <div className="game-card" style={background}>
-            <div className="title-container bg-blue-600">
+            <div className="title-container bg-blue-500">
               {data.metacritic ? <div className={ratingStyle}>
                                     <p className="rating">{data.metacritic}</p>
                                  </div> 
@@ -38,7 +38,7 @@ function GameCard({data, isLoggedIn}) {
                     <div className="grid grid-cols-2 mt-6">
                         {fire.auth.currentUser ? inList ?  
                         <button
-                            className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                            className="hidden-contents inList font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                             style={{ transition: "all .15s ease" }}
                         >
@@ -51,9 +51,9 @@ function GameCard({data, isLoggedIn}) {
                                         title: title,
                                         genres: genres,
                                     }}
-                            currClass="hidden-contents"
+                            currClass="hidden-contents bg-yellow-300 text-yellow-900 hover:shadow-lg"
                                     >
-                            Add to list <span role="img">➕</span>
+                            Add to list <span role="img">🞣</span>
                             
                         </Modal>
                         : 

@@ -51,13 +51,13 @@ function UserList() {
                             </td>
                             <td className="pl-4 text-blue-100">
                                 {title}
-                                <Modal currClass="float-right"
+                                <Modal currClass="edit-button bg-blue-500 w-full text-right"
                                        game={game}
                                 >
                                 Edit
                                 </Modal>
                             </td>
-                            <td className="w-24 text-center">{rating}</td>
+                            <td className="w-12 text-center sm:w-24">{rating}</td>
                           </tr>
                 temp.push(row)
             })

@@ -56,7 +56,7 @@ function App(props) {
   }
 
   function getGamesData() {
-
+    setLoading(true)
     fetch(apiURL,
       {
           headers : {
@@ -101,11 +101,11 @@ function App(props) {
 
   var prevPageButton = page > 1 ? 
   (
-    <button className="col-span-1 row-start-7 row-end-7 bg-blue-600 text-white m-2" onClick={() => changePage(false)} >Prev Page</button>
+    <button className=" bg-blue-400 text-white m-2 p-1.5" onClick={() => changePage(false)} > ⮜ </button>
   )
   :
   (
-    <button className="col-span-1 row-start-7 row-end-7 bg-blue-100 text-white m-2 cursor-default" ></button>
+    <button className=" bg-blue-100 text-white m-2 cursor-default" ></button>
   )
 
   var loggedOutLinks = (
@@ -130,7 +130,7 @@ function App(props) {
         <div className="p-0 sm:pb-1 pl-2">My List</div>
 
       </Link>
-      <Link to="/" className="bg-blue-600 text-blue-100 p-4 rounded-lg hover:bg-red-800 sm:">
+      <Link to="/" className="bg-blue-500 text-blue-100 p-4 rounded-lg hover:bg-red-800 sm:">
         <button
                 onClick={() => {
                                   fire.logout()
@@ -175,9 +175,12 @@ return (
                    isLoading={loading}
         > 
           
-          {prevPageButton}
-          <h2 className="col-start-2 col-end-4 row-start-7 row-end-auto text-center">Page: {page}</h2>
-          <button className="col-span-1 col-start-4 row-start-7 row-end-7 bg-blue-600 text-white m-2" onClick={() => changePage(true)} >Next Page</button>
+          
+          <div className="flex justify-center items-center h-10 text-sm col-span-1 mr-4 ml-4 2xl:col-span-4 xl:col-span-3 md:col-span-2">
+            {prevPageButton}
+            <h2 className=" row-end-auto text-center">Page: {page}</h2>
+            <button className="p-1.5 bg-blue-500 text-white m-2" onClick={() => changePage(true)} > ⮞ </button>
+          </div>
         </GamesList>
       </Route>
       <Route path="/login">

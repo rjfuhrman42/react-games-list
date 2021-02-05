@@ -13,5 +13,18 @@ table, th {
     border: 2px solid #5c99d1;
 }
 
+.edit-button:hover {
+    text-shadow: 1.5px 1.5px 8px rgb(70, 70, 70);
+}
+
 /* table { width: 85rem;} */
+
+@media (max-width: 640px) { 
+    .image-col {
+
+        height: 6em;
+        width: 6em;
+
+    } 
+}
 

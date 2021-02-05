@@ -30,7 +30,6 @@
 }
 
 .hidden-contents {
-    color: white;
     opacity: 0;
     position:absolute;
     font-size: 14px;

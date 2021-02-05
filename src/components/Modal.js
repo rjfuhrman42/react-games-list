@@ -22,7 +22,7 @@ function Modal({onClick, game, currClass, children}) {
   return (
     <>
       <button
-        className={currClass + " font-bold bg-gray-700 text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"}
+        className={currClass + " font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1"}
         type="button"
         onClick={() => setShowModal(true)}
       >

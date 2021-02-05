@@ -15,16 +15,16 @@ function SortTab({getData, disableSelection, reset}) {
     (
         <div className="h-full bg-blue-400 rounded-r-xl">
            
-            <select name="sort" className="bg-blue-400 border-none h-full w-full text-white pl-2" onChange={(e) => handleChange(e)} id="sort">       
-                <option className="pl-2" value="relevance">Popularity</option>
-                <option className="pl-2" value="released">Release Date</option>
+            <select name="sort" className="bg-blue-400 border-none h-full w-full text-white md:pl-2" onChange={(e) => handleChange(e)} id="sort">       
+                <option value="relevance">Popularity</option>
+                <option value="released">Release Date</option>
             </select>           
         </div>
     )
 
     return (
         <div className="m-0 w-3/12 h-full float-right sm:w-2/12">
-            <div className="text-sm h-full w-full float-right md:text-xl">
+            <div className="text-sm h-full w-full  md:text-xl">
                 {disableSelection ? `Results for "${document.getElementById('search').value}"` : selector}
             </div>
         </div>
