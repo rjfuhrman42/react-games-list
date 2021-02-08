@@ -50,11 +50,10 @@ function UserList() {
                                 
                             </td>
                             <td className="pl-4 text-blue-100">
-                                {title}
-                                <Modal currClass="edit-button bg-blue-500 w-full text-right"
+                                <Modal currClass="edit-button bg-blue-500 w-full text-left text-xl"
                                        game={game}
                                 >
-                                Edit
+                                {title}
                                 </Modal>
                             </td>
                             <td className="w-12 text-center sm:w-24">{rating}</td>

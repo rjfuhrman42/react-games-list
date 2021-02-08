@@ -7,6 +7,7 @@ module.exports = {
         '88' : '22rem',
         '104' : '26rem',
         'xtra' : '36rem',
+        'modal' : '46rem',
         'customXL' : '85rem',
         '8/10' : '80%',
         'poster': '85%',

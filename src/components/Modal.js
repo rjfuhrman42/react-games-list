@@ -33,29 +33,32 @@ function Modal({onClick, game, currClass, children}) {
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
-            <div className="relative w-1/2 my-6 mx-auto max-w-3xl">
+            <div className="relative my-6 mx-auto w-modal">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 border-blue-400 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-                  <h3 className="text-3xl font-semibold text-black">
-                    {game.title}
-                  </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                <div className="flex flex-col items-start justify-start p-5 rounded-t bg-cover h-104" style={{backgroundImage: `url('${game.image}')`,}}>
+                <button
+                    className="ml-auto p-0 bg-transparent border-0 text-red-200 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    <span className="bg-transparent h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
                   </button>
+                  <h3 className="text-3xl font-semibold text-white bg-blue-400 p-2 rounded-lg">
+                    {game.title}
+                  </h3>
+                  <div className="flex flex-row mt-1">
+                    {game.genres.map(genre => <h4 className="text-lg font-semibold text-white bg-blue-400 p-2 mr-1 rounded-lg">{genre}</h4>)}
+                  </div>
                 </div>
                 {/*body*/}
-                <div className="relative inline-flex p-6 flex-auto">
-                  <h4 className="my-4 text-black text-lg leading-relaxed w-1/2">
+                <div className="relative inline-flex flex-auto p-2 text-white bg-blue-400 h-24 items-center">
+                  <h4 className=" text-lg leading-relaxed w-1/2">
                     What would you rate this game?
                   </h4>
-                    <select id="user-rating" className="w-1/2 border border-solid border-b border-solid border-gray-300 text-black">
+                    <select id="user-rating" className="w-1/2 border border-solid border-b border-solid border-blue-300 text-black p-2">
                         <option defaultValue={true} >-- Pick a rating --</option>
                         <option value="10">10 Masterpiece</option>
                         <option value="9">9 Great</option>
@@ -70,39 +73,37 @@ function Modal({onClick, game, currClass, children}) {
                     </select>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-between p-6 border-t border-solid border-gray-300 rounded-b">
-
-                <button
-                    className="bg-red-500 self-start text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    style={{ transition: "all .15s ease" }}
-                    onClick={() => {
-                        fire.removeGame(game.key)
-                        setShowModal(false)
-                    }}
-                  >
-                    Delete
-                  </button>
-
+                <div className="flex items-center justify-between p-2 rounded-b bg-blue-500 h-16">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    style={{ transition: "all .15s ease" }}
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    style={{ transition: "all .15s ease" }}
-                    onClick={() => {
-                        onSubmit()
-                        // onClick()
-                    }}
-                  >
-                    Save Changes
-                  </button>
+                      className="mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1"
+                      type="button"
+                      style={{ transition: "all .15s ease" }}
+                      onClick={() => {
+                          fire.removeGame(game.key)
+                          setShowModal(false)
+                      }}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 "
+                      type="button"
+                      style={{ transition: "all .15s ease" }}
+                      onClick={() => {
+                          onSubmit()
+                          // onClick()
+                      }}
+                    >
+                      Save Changes
+                    </button>
+                    <button
+                      className="bg-yellow-400 text-yellow-800 active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 "
+                      type="button"
+                      style={{ transition: "all .15s ease" }}
+                      onClick={() => setShowModal(false)}
+                    >
+                      Close
+                    </button>
                 </div>
               </div>
             </div>
