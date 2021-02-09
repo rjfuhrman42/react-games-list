@@ -36,16 +36,19 @@ function Modal({onClick, game, currClass, children}) {
             <div className="relative my-6 mx-auto w-modal">
               {/*content*/}
               <div className="border-0 border-blue-400 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
+                <div className="flex items-center justify-between p-2 rounded-t bg-blue-300 h-8">
+                  <button
+                      className="ml-auto p-0 bg-transparent text-red-200 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      onClick={() => setShowModal(false)}
+                    >
+                      <span className="bg-transparent text-2xl pb-1 block outline-none focus:outline-none">
+                        ×
+                      </span>
+                    </button>
+                </div>
                 {/*header*/}
-                <div className="flex flex-col items-start justify-start p-5 rounded-t bg-cover h-104" style={{backgroundImage: `url('${game.image}')`,}}>
-                <button
-                    className="ml-auto p-0 bg-transparent border-0 text-red-200 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
+                <div className="flex flex-col items-start justify-start p-5 bg-cover bg-center h-104" style={{backgroundImage: `url('${game.image}')`,}}>
+
                   <h3 className="text-3xl font-semibold text-white bg-blue-400 p-2 rounded-lg">
                     {game.title}
                   </h3>
@@ -73,7 +76,7 @@ function Modal({onClick, game, currClass, children}) {
                     </select>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-between p-2 rounded-b bg-blue-500 h-16">
+                <div className="flex items-center justify-between p-2 rounded-b bg-blue-300 h-16">
                   <button
                       className="mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1"
                       type="button"

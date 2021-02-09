@@ -41,18 +41,20 @@ function App(props) {
 
   const handleKeyPress = (event) =>
   {
-      if(event.key === 'Enter')
-      {
-          if(page > 1) setPage(1)
-          setLoading(true)
+      if(event.key === 'Enter') setUpForSearch()      
+  }
 
-          let search = document.getElementById('search')
-          let term = search.value
+  const handleClick = (event) => setUpForSearch()
 
-          history.push('/')
-          setApiURL(`https://api.rawg.io/api/games?search=${term}&page=${page}`)
-      }
-      
+  function setUpForSearch() {
+    if(page > 1) setPage(1)
+
+    let search = document.getElementById('search')
+    let term = search.value
+
+
+    // history.push('/')
+    setApiURL(`https://api.rawg.io/api/games?search=${term}&page=${page}`)
   }
 
   function getGamesData() {
@@ -149,11 +151,6 @@ return (
     <header className="w-full shadow-xl bg-blue-400 p-2 flex justify-between items-center">
       <Link to='/' 
             className="font-bold bg-blue-400 text-blue-100 w-36 h-full flex items-center justify-around sm:w-56" 
-            // onClick={() => {
-            //                   if(page > 1) setPage(1)
-            //                   setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added&page=${page}`)
-            //                 }
-            //               }
       >
         
 
@@ -168,7 +165,7 @@ return (
     </header>
     <Switch>       
       <Route exact path="/">
-        <GamesList games={games} search={<SearchBar handleKeyPress={handleKeyPress}>
+        <GamesList games={games} search={<SearchBar handleKeyPress={handleKeyPress} handleClick={handleClick}>
                                           <SortTab getData={setApiURL} reset={setPage} disableSelection={isSearch} />
                                          </SearchBar>} 
                    isLoggedIn={loggedIn} 
