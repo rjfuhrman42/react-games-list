@@ -5,11 +5,11 @@ import GamesList from './components/GamesList'
 import Login from './components/Login'
 import UserList from "./components/UserList"
 import SortTab from "./components/SortTab"
+import MobileMenu from "./components/MobileMenu"
 
 import { FaReact } from 'react-icons/fa'
 import { BsList } from 'react-icons/bs'
 import { IconContext } from "react-icons";
-
 
 import './assets/full.css'
 
@@ -123,7 +123,7 @@ function App(props) {
   )
 
   var loggedInLinks = (
-    <div className="flex justify-between text-sm items-center  sm:text-xl text-white">
+    <div className="hidden justify-between text-sm items-center  sm:text-xl text-white sm:flex">
       <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
         <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
             <BsList />
@@ -140,7 +140,7 @@ function App(props) {
                                   }}>
                 Log out
         </button>
-      </Link>
+      </Link>                            
     </div>
   )
 
@@ -162,6 +162,7 @@ return (
       
       </Link>
       {loggedIn ? loggedInLinks : loggedOutLinks}
+      <MobileMenu />   
     </header>
     <Switch>       
       <Route exact path="/">
