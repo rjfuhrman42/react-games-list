@@ -15,7 +15,7 @@ function SearchBar({handleKeyPress, handleClick, children}) {
 
                 
                 {children}
-                <button className="pl-10 w-1/12 h-full bg-blue-300 float-right" onClick={handleClick}>{icon}</button>
+                <button className="pl-10 w-1/12 h-full bg-blue-300 float-right" onClick={handleClick}>{icon}test</button>
         </div>
     )
 }
