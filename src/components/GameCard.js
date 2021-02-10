@@ -49,7 +49,7 @@ function GameCard({data, isLoggedIn}) {
                             game={{
                                         image: image,
                                         title: title,
-                                        genres: genres,
+                                        genres: data.genres.map(genre => genre.name),
                                     }}
                             currClass="hidden-contents bg-yellow-300 text-yellow-900 hover:shadow-lg"
                                     >

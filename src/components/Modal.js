@@ -4,14 +4,13 @@ import '../assets/gameCard.css'
 
 function Modal({onClick, game, currClass, children}) {
   const [showModal, setShowModal] = React.useState(false);
-
+  
   function onSubmit() {
       let select = document.getElementById('user-rating')
       let rating = select.value
 
       if(rating === "-- Pick a rating --"){
           //dont save that value 
-          console.log(rating)
       }
       else {
         fire.addGame(game, rating)
@@ -33,7 +32,7 @@ function Modal({onClick, game, currClass, children}) {
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
-            <div className="relative my-6 mx-auto w-modal">
+            <div className="relative my-6 mx-auto w-11/12 sm:w-modal">
               {/*content*/}
               <div className="border-0 border-blue-400 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
                 <div className="flex items-center justify-between p-2 rounded-t bg-blue-300 h-8">
@@ -47,13 +46,13 @@ function Modal({onClick, game, currClass, children}) {
                     </button>
                 </div>
                 {/*header*/}
-                <div className="flex flex-col items-start justify-start p-5 bg-cover bg-center h-104" style={{backgroundImage: `url('${game.image}')`,}}>
+                <div className="flex flex-col h-88 items-start justify-start p-5 bg-cover bg-center sm:h-104" style={{backgroundImage: `url('${game.image}')`,}}>
 
                   <h3 className="text-3xl font-semibold text-white bg-blue-400 p-2 rounded-lg">
                     {game.title}
                   </h3>
                   <div className="flex flex-row mt-1">
-                    {game.genres.map(genre => <h4 className="text-lg font-semibold text-white bg-blue-400 p-2 mr-1 rounded-lg">{genre}</h4>)}
+                    {game.genres.map(genre => <h4 className="text-xs font-semibold text-white bg-blue-400 p-2 mr-1 rounded-lg sm:text-lg">{genre}</h4>)}
                   </div>
                 </div>
                 {/*body*/}

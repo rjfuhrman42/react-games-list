@@ -8,7 +8,7 @@ import SortTab from "./components/SortTab"
 import MobileMenu from "./components/MobileMenu"
 
 import { FaReact } from 'react-icons/fa'
-import { BsList } from 'react-icons/bs'
+import { BsList, BsBoxArrowLeft } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 
 import './assets/full.css'
@@ -112,11 +112,11 @@ function App(props) {
 
   var loggedOutLinks = (
     <div className="w-72 flex justify-between items-center text-white">
-        <Link to='/login' className="float-right bg-blue-700 p-4 text-blue-100 hover:bg-blue-800">
+        <Link to='/login' className="float-right bg-blue-700 p-2 text-blue-100 hover:bg-blue-800 sm:p-4">
           Log In
         </Link>
         or
-        <Link to='/register' className="float-right bg-blue-700 p-4 text-blue-100 hover:bg-blue-800">
+        <Link to='/register' className="float-right bg-blue-700 p-2 text-blue-100 hover:bg-blue-800 sm:p-4">
           Create an account
         </Link>
     </div>
@@ -158,11 +158,37 @@ return (
             <FaReact />
         </IconContext.Provider>
 
-        <h2 className="text-sm ml-2 hover:text-blue-800 sm:text-xl">React Games List</h2>
+        <h2 className="hidden text-xl ml-2 hover:text-blue-800 sm:inline-block">React Games List</h2>
+        <h2 className="text-lg mr-4 hover:text-blue-800 sm:hidden">RGL</h2>
       
       </Link>
       {loggedIn ? loggedInLinks : loggedOutLinks}
-      <MobileMenu />   
+      <MobileMenu shown={loggedIn}>
+        <li>
+          <Link to='/list' className="mr-1 text-blue-100 p-2 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+            <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <BsList />
+            </IconContext.Provider> 
+
+            <div className="p-0 sm:pb-1 pl-2">My List</div>
+
+          </Link>
+        </li>
+        <li>
+          <Link to="/" className="mr-1 text-blue-100 p-2 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+            <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <BsBoxArrowLeft />
+            </IconContext.Provider> 
+            <button
+                    onClick={() => {
+                                      fire.logout()
+                                      checkInitialization()
+                                      }}>
+                    Log out
+            </button>
+          </Link>
+        </li>    
+      </MobileMenu>  
     </header>
     <Switch>       
       <Route exact path="/">

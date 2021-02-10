@@ -2,13 +2,10 @@ import React,{ useState } from "react"
 
 import HamburgerMenu from "react-hamburger-menu"
 
-function MobileMenu() {
+function MobileMenu({children, shown}) {
     
     let [open, setOpen] = useState(false)
 
-    // let menu = <div>
-    //     <
-    // </div>
 
     function handleClick() {
         setOpen(prev => !prev)
@@ -16,7 +13,7 @@ function MobileMenu() {
     
 
     return (
-        <div className="inline-block cursor-pointer pr-3.5 sm:hidden">
+        <div className={`inline-block cursor-pointer pr-3.5 sm:hidden ${shown ? "inline-block" : "hidden"}`}>
             <HamburgerMenu
                 isOpen={open}
                 menuClicked={handleClick}
@@ -28,7 +25,9 @@ function MobileMenu() {
                 borderRadius={0}
                 animationDuration={0.5}
             />
-        
+            <ul className={`absolute right-0 top-16 p-4 text-center w-36 h-36 bg-blue-600 z-10 ${open ? "transition-opacity duration-200 ease-in opacity-100" : "transition-opacity duration-200 ease-in opacity-0"}`}>
+              {children}  
+            </ul>
         </div>
     )
 }
