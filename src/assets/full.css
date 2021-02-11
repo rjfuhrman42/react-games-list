@@ -1,11 +1,8 @@
-html {
+html, body {
     height: 100%;
     background: rgb(235,248,255);
-    width: 100%;
-    margin: 0 auto;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    overflow-x: hidden;
-}

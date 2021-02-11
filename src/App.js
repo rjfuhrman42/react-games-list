@@ -148,24 +148,15 @@ function App(props) {
 if(firebaseInitialized !== false)
 return (
   <div className="App">
-    <header className="w-full shadow-xl bg-blue-400 p-2 flex justify-between items-center">
-      <Link to='/' 
-            className="font-bold bg-blue-400 text-blue-100 w-36 h-full flex items-center justify-around sm:w-56" 
-      >
-        
 
-        <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
-            <FaReact />
-        </IconContext.Provider>
+    {/* -------------- HEADER -------------- */}
 
-        <h2 className="hidden text-xl ml-2 hover:text-blue-800 sm:inline-block">React Games List</h2>
-        <h2 className="text-lg mr-4 hover:text-blue-800 sm:hidden">RGL</h2>
-      
-      </Link>
-      {loggedIn ? loggedInLinks : loggedOutLinks}
+    <header className="w-full z-20 shadow-xl bg-blue-400 p-2 flex justify-between items-center">
+      {/* -------------- COLLAPSED MOBILE MENU -------------- */}
+
       <MobileMenu shown={loggedIn}>
         <li>
-          <Link to='/list' className="mr-1 text-blue-100 p-2 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsList />
             </IconContext.Provider> 
@@ -175,7 +166,7 @@ return (
           </Link>
         </li>
         <li>
-          <Link to="/" className="mr-1 text-blue-100 p-2 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+          <Link to="/" className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsBoxArrowLeft />
             </IconContext.Provider> 
@@ -189,7 +180,26 @@ return (
           </Link>
         </li>    
       </MobileMenu>  
+      <Link to='/' 
+            className="font-bold bg-blue-400 text-blue-100 w-36 h-full flex items-center justify-around sm:w-56" 
+      >
+        
+
+        <IconContext.Provider value={{ color: "cyan", className: "global-class-name", size: "3em" }}>
+            <FaReact />
+        </IconContext.Provider>
+
+        <h2 className="hidden text-xl ml-2 hover:text-blue-800 sm:inline-block">React Games List</h2>
+        <h2 className="text-lg mr-4 hover:text-blue-800 sm:hidden">RGL</h2>
+      
+      </Link>
+      
+      {loggedIn ? loggedInLinks : loggedOutLinks}
+
     </header>
+
+    {/* -------------- BODY/ROUTES -------------- */}                                  
+    
     <Switch>       
       <Route exact path="/">
         <GamesList games={games} search={<SearchBar handleKeyPress={handleKeyPress} handleClick={handleClick}>
