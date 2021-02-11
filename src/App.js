@@ -161,22 +161,22 @@ return (
                 <BsList />
             </IconContext.Provider> 
 
-            <div className="p-0 sm:pb-1 pl-2">My List</div>
+            <div className="w-full p-0 sm:pb-1 pl-2">My List</div>
 
           </Link>
         </li>
         <li>
-          <Link to="/" className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+          <Link to="/"  onClick={() => {
+                                      fire.logout()
+                                      checkInitialization()
+                            }} 
+                className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsBoxArrowLeft />
             </IconContext.Provider> 
-            <button
-                    onClick={() => {
-                                      fire.logout()
-                                      checkInitialization()
-                                      }}>
+            <div className="w-full">
                     Log out
-            </button>
+            </div>
           </Link>
         </li>    
       </MobileMenu>  

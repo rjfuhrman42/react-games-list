@@ -2,7 +2,7 @@ import React from "react";
 import fire from "../config/fire"
 import '../assets/gameCard.css'
 
-function Modal({onClick, game, currClass, children}) {
+function Modal({onClick, game, currClass, canDelete, children}) {
   const [showModal, setShowModal] = React.useState(false);
   
   function onSubmit() {
@@ -77,7 +77,10 @@ function Modal({onClick, game, currClass, children}) {
                 {/*footer*/}
                 <div className="flex items-center justify-between p-2 rounded-b bg-blue-300 h-16">
                   <button
-                      className="mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1"
+                      className={canDelete ? 
+                        "mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1"
+                      :
+                        "hidden pointer-events-none"}
                       type="button"
                       style={{ transition: "all .15s ease" }}
                       onClick={() => {

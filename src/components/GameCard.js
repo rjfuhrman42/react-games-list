@@ -46,6 +46,7 @@ function GameCard({data, isLoggedIn}) {
                         </button>
                         :                                                               // This may need to be cleaned up for readability ... 
                         <Modal onClick={() => setInList(true)} 
+                            canDelete={false}
                             game={{
                                         image: image,
                                         title: title,

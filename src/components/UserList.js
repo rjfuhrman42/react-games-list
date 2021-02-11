@@ -52,6 +52,7 @@ function UserList() {
                             <td className="pl-4 text-blue-100">
                                 <Modal currClass="edit-button bg-blue-500 w-full text-left text-xl"
                                        game={game}
+                                       canDelete={true}
                                 >
                                 {title}
                                 </Modal>
