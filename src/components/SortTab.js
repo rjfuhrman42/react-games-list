@@ -18,7 +18,8 @@ function SortTab({getData, disableSelection, reset}) {
             <select name="sort" className="bg-blue-400 border-0 rounded-r rounded-lg h-full w-full text-white md:pl-2" onChange={(e) => handleChange(e)} id="sort">       
                 <option value="relevance">Popularity</option>
                 <option value="released">Release Date</option>
-            </select>           
+            </select>
+            <label for="sort"></label>           
         </div>
     )
 

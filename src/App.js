@@ -103,11 +103,11 @@ function App(props) {
 
   var prevPageButton = page > 1 ? 
   (
-    <button className=" bg-blue-400 text-white m-2 p-1.5" onClick={() => changePage(false)} > ⮜ </button>
+    <button name="previousPageButton" className=" bg-blue-400 text-white m-2 p-1.5" onClick={() => changePage(false)} > ⮜ </button>
   )
   :
   (
-    <button className=" bg-blue-100 text-white m-2 cursor-default" ></button>
+    <button name="previousPageButton" className=" bg-blue-100 text-white m-2 cursor-default" ></button>
   )
 
   var loggedOutLinks = (
@@ -152,6 +152,7 @@ return (
     {/* -------------- HEADER -------------- */}
 
     <header className="w-full z-20 shadow-xl bg-blue-400 p-2 flex justify-between items-center">
+      
       {/* -------------- COLLAPSED MOBILE MENU -------------- */}
 
       <MobileMenu shown={loggedIn}>
@@ -181,7 +182,7 @@ return (
         </li>    
       </MobileMenu>  
       <Link to='/' 
-            className="font-bold bg-blue-400 text-blue-100 w-36 h-full flex items-center justify-around sm:w-56" 
+            className="font-bold bg-transparent text-blue-100 w-36 h-full flex items-center justify-around sm:w-56" 
       >
         
 

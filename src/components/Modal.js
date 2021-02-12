@@ -2,8 +2,17 @@ import React from "react";
 import fire from "../config/fire"
 import '../assets/gameCard.css'
 
+import { IoMdCloseCircle } from 'react-icons/io'
+import { IconContext } from "react-icons";
+
+
+
 function Modal({onClick, game, currClass, canDelete, children}) {
   const [showModal, setShowModal] = React.useState(false);
+
+  const icon = <IconContext.Provider value={{ color: "red", className: "global-class-name", size: "0.9em", }}>
+                    <IoMdCloseCircle />
+             </IconContext.Provider> 
   
   function onSubmit() {
       let select = document.getElementById('user-rating')
@@ -35,14 +44,15 @@ function Modal({onClick, game, currClass, canDelete, children}) {
             <div className="relative my-6 mx-auto w-11/12 sm:w-modal">
               {/*content*/}
               <div className="border-0 border-blue-400 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
-                <div className="flex items-center justify-between p-2 rounded-t bg-blue-300 h-8">
+                <div className="flex items-center justify-between p-2 rounded-t bg-blue-600 h-8">
                   <button
-                      className="ml-auto p-0 bg-transparent text-red-200 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      className="ml-auto border rounded-full bg-white p-0 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                       onClick={() => setShowModal(false)}
                     >
-                      <span className="bg-transparent text-2xl pb-1 block outline-none focus:outline-none">
+                      {icon}
+                      {/* <span className="bg-transparent text-2xl block outline-none focus:outline-none">
                         ×
-                      </span>
+                      </span> */}
                     </button>
                 </div>
                 {/*header*/}
@@ -56,7 +66,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                   </div>
                 </div>
                 {/*body*/}
-                <div className="relative inline-flex flex-auto p-2 text-white bg-blue-400 h-24 items-center">
+                <div className="relative inline-flex flex-auto p-2 text-white bg-blue-500 h-24 items-center">
                   <h4 className=" text-lg leading-relaxed w-1/2">
                     What would you rate this game?
                   </h4>
@@ -75,7 +85,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                     </select>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-between p-2 rounded-b bg-blue-300 h-16">
+                <div className="flex items-center justify-between p-2 rounded-b  bg-blue-600 h-16">
                   <button
                       className={canDelete ? 
                         "mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1"
