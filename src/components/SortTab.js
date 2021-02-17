@@ -13,9 +13,9 @@ function SortTab({getData, disableSelection, reset}) {
 
     const selector = 
     (
-        <div className="h-full bg-blue-400 rounded-r-xl">
+        <div className="h-full bg-blue-700 rounded-r-xl">
            
-            <select name="sort" className="bg-blue-400 border-0 rounded-r rounded-lg h-full w-full text-white md:pl-2" onChange={(e) => handleChange(e)} id="sort">       
+            <select name="sort" className="bg-blue-700 border-0 rounded-r rounded-lg h-full w-full text-white md:pl-2" onChange={(e) => handleChange(e)} id="sort">       
                 <option value="relevance">Popularity</option>
                 <option value="released">Release Date</option>
             </select>

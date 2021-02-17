@@ -25,7 +25,7 @@ function GameCard({data, isLoggedIn}) {
 
     return (
         <div className="game-card" style={background}>
-            <div className="title-container bg-blue-500">
+            <div className="title-container bg-blue-700">
               {data.metacritic ? <div className={ratingStyle}>
                                     <p className="rating">{data.metacritic}</p>
                                  </div> 

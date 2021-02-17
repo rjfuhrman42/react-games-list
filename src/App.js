@@ -103,7 +103,7 @@ function App(props) {
 
   var prevPageButton = page > 1 ? 
   (
-    <button name="previousPageButton" className=" bg-blue-400 text-white m-2 p-1.5" onClick={() => changePage(false)} > ⮜ </button>
+    <button name="previousPageButton" className=" bg-blue-700 text-white m-2 p-1.5" onClick={() => changePage(false)} > ⮜ </button>
   )
   :
   (
@@ -151,13 +151,13 @@ return (
 
     {/* -------------- HEADER -------------- */}
 
-    <header className="w-full z-20 shadow-xl bg-blue-400 p-2 flex justify-between items-center">
+    <header className="w-full z-20 shadow-xl bg-blue-700 p-2 flex justify-between items-center">
       
       {/* -------------- COLLAPSED MOBILE MENU -------------- */}
 
       <MobileMenu shown={loggedIn}>
         <li>
-          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-200 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsList />
             </IconContext.Provider> 
@@ -214,7 +214,7 @@ return (
           <div className="flex justify-center items-center h-10 text-sm col-span-1 mr-4 ml-4 2xl:col-span-4 xl:col-span-3 md:col-span-2">
             {prevPageButton}
             <h2 className=" row-end-auto text-center">Page: {page}</h2>
-            <button className="p-1.5 bg-blue-500 text-white m-2" onClick={() => changePage(true)} > ⮞ </button>
+            <button className="p-1.5 bg-blue-700 text-white m-2" onClick={() => changePage(true)} > ⮞ </button>
           </div>
         </GamesList>
       </Route>
