@@ -6,11 +6,12 @@
 }
 
 td {
-    border: 2px solid #5c99d1;
+    border: 1px solid rgba(37, 99, 235, var(--tw-bg-opacity));
 }
 
 table, th {
-    border: 2px solid #5c99d1;
+    border: 1px solid rgba(37, 99, 235, var(--tw-bg-opacity));
+
 }
 
 .edit-button:hover {

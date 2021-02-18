@@ -35,6 +35,7 @@ function UserList() {
             setUsersGames(temp)
 
         })
+        return () => ref.off()
     }
 
     function setListItems() {                                              // Creates JSX items from the data contained in the usersGames
@@ -50,14 +51,14 @@ function UserList() {
                                 
                             </td>
                             <td className="pl-4 text-blue-100">
-                                <Modal currClass="edit-button bg-blue-500 w-full text-left text-xl"
+                                <Modal currClass="edit-button bg-blue-700 text-left text-xl"
                                        game={game}
                                        canDelete={true}
                                 >
                                 {title}
                                 </Modal>
                             </td>
-                            <td className="w-12 text-center sm:w-24">{rating}</td>
+                            <td className="w-12 text-center text-xl font-bold sm:w-24 sm:text-2xl">{rating}</td>
                           </tr>
                 temp.push(row)
             })
@@ -109,21 +110,13 @@ function UserList() {
         setUsersGames([...sorted])
     }
 
-        useEffect(() => {
-
-            getGamesFromFirebase()                                      // On page load, grab a snapshot of the user's list from firebase
-            return () => ref.off()
-        }, [])
-
-        useEffect(() => {
-            setListItems()
-
-        }, [usersGames])                   // Whenever the user's games are updated, update the table as well 
+        useEffect(getGamesFromFirebase, [])
+        useEffect(setListItems, [usersGames])                   // Whenever the user's games are updated, update the table as well 
 
 
     return (
-        <table className="bg-blue-500 text-blue-100 w-11/12 mt-4 text-m m-auto mt-2 sm:text-lg 2xl:w-customXL">
-            <thead className="bg-blue-400 text-white rounded">
+        <table className="bg-blue-700 text-blue-100 w-11/12 mt-4 text-m m-auto mt-2 sm:text-lg 2xl:w-customXL">
+            <thead className="bg-blue-800 text-white rounded">
                 <tr>
                     <th scope="col">Image</th>
                     <th scope="col">

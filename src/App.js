@@ -190,7 +190,7 @@ return (
             <FaReact />
         </IconContext.Provider>
 
-        <h2 className="hidden text-xl ml-2 hover:text-blue-800 sm:inline-block">React Games List</h2>
+        <h2 className="hidden text-xl ml-2 hover:text-blue-200 sm:inline-block">React Games List</h2>
         <h2 className="text-lg mr-4 hover:text-blue-800 sm:hidden">RGL</h2>
       
       </Link>

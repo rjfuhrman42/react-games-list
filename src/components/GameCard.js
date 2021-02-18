@@ -52,7 +52,7 @@ function GameCard({data, isLoggedIn}) {
                                         title: title,
                                         genres: data.genres.map(genre => genre.name),
                                     }}
-                            currClass="hidden-contents bg-yellow-300 text-yellow-900 hover:shadow-lg"
+                            currClass="hidden-contents bg-green-500 text-white hover:shadow-lg"
                                     >
                             Add to list <span role="img">🞣</span>
                             

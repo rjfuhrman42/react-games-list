@@ -46,7 +46,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
               {/* ----content---- */}
 
               <div className="border-0 border-blue-400 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
-                <div className="flex items-center justify-between p-2 rounded-t bg-gray-200 h-8">
+                <div className="flex items-center justify-between p-2 rounded-t bg-white h-8">
                   <button
                       className="ml-auto border-0 rounded-full p-0 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                       onClick={() => setShowModal(false)}

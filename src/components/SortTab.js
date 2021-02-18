@@ -19,7 +19,7 @@ function SortTab({getData, disableSelection, reset}) {
                 <option value="relevance">Popularity</option>
                 <option value="released">Release Date</option>
             </select>
-            <label for="sort"></label>           
+            <label htmlFor="sort"></label>           
         </div>
     )
 
