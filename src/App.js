@@ -8,7 +8,8 @@ import SortTab from "./components/SortTab"
 import MobileMenu from "./components/MobileMenu"
 
 import { FaReact } from 'react-icons/fa'
-import { BsList, BsBoxArrowLeft } from 'react-icons/bs'
+import { BsList, BsBoxArrowLeft, BsBoxArrowInUp } from 'react-icons/bs'
+import { WiStars } from 'react-icons/wi'
 import { IconContext } from "react-icons";
 
 import './assets/full.css'
@@ -111,19 +112,31 @@ function App(props) {
   )
 
   var loggedOutLinks = (
-    <div className="w-72 flex justify-between items-center text-white">
-        <Link to='/login' className="float-right bg-blue-700 p-2 text-blue-100 hover:bg-blue-800 sm:p-4">
-          Log In
+    <div className="justify-between text-sm flex flex-row items-center sm:text-xl text-white">
+        <Link to='/login' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+            <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <BsBoxArrowInUp />
+            </IconContext.Provider> 
+            <div className="p-0 sm:pb-1 pl-2">
+                    Log In
+            </div>
         </Link>
-        or
-        <Link to='/register' className="float-right bg-blue-700 p-2 text-blue-100 hover:bg-blue-800 sm:p-4">
-          Create an account
+        <p className="p-0 hidden sm:pb-1 sm:px-2 sm:inline-block">
+            or
+        </p>
+        <Link to='/register' className="bg-green-500 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:ml-2 ">
+          <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <WiStars />
+          </IconContext.Provider> 
+          <div className="p-0 sm:pb-1 pl-2">
+                Sign Up
+          </div>
         </Link>
     </div>
   )
 
   var loggedInLinks = (
-    <div className="hidden justify-between text-sm items-center  sm:text-xl text-white sm:flex">
+    <div className="hidden justify-between text-sm items-center sm:text-xl text-white sm:flex">
       <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
         <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
             <BsList />
@@ -132,15 +145,18 @@ function App(props) {
         <div className="p-0 sm:pb-1 pl-2">My List</div>
 
       </Link>
-      <Link to="/" className="bg-blue-500 text-blue-100 p-4 rounded-lg hover:bg-red-800 sm:">
-        <button
-                onClick={() => {
-                                  fire.logout()
-                                  checkInitialization()
-                                  }}>
-                Log out
-        </button>
-      </Link>                            
+      <Link to="/"  onClick={() => {
+                                      fire.logout()
+                                      checkInitialization()
+                            }} 
+                className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-red-800 sm:mr-2 ">
+            <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <BsBoxArrowLeft />
+            </IconContext.Provider> 
+            <div className="p-0 sm:pb-1 pl-2">
+                    Log out
+            </div>
+      </Link>                          
     </div>
   )
 
@@ -157,7 +173,7 @@ return (
 
       <MobileMenu shown={loggedIn}>
         <li>
-          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-200 sm:mr-2 ">
+          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsList />
             </IconContext.Provider> 
@@ -171,7 +187,7 @@ return (
                                       fire.logout()
                                       checkInitialization()
                             }} 
-                className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+                className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-red-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsBoxArrowLeft />
             </IconContext.Provider> 

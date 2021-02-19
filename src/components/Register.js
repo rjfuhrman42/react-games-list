@@ -11,8 +11,8 @@ function Register({checkInitialization})
     let history = useHistory();
     
     return (
-        <div className="absolute flex justify-center mt-6 items-center content-around w-full sm:mt-0">
-            <div className="bg-white rounded w-10/12 shadow-xl text-black mt-16 p-12 flex flex-col content-around sm:w-xtra sm:p-20 ">
+        <div className="absolute flex justify-center mt-8 items-center content-around w-full sm:mt-16">
+            <div className="bg-white rounded w-10/12 shadow-xl text-black p-12 flex flex-col content-around sm:w-xtra sm:p-20 ">
                 <h1 className="text-3xl font-bold mb-6 leading-none">Create an Account</h1>
                 <form className="mb-6">
                     <h3>Username</h3>

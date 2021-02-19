@@ -13,7 +13,7 @@ function MobileMenu({children, shown}) {
     
 
     return (
-        <div className={`cursor-pointer pl-2 sm:hidden ${shown ? "inline-block" : "hidden"}`}>
+        <div className={`cursor-pointer pl-2 sm:hidden inline-block ${shown ? "inline-block" : "hidden"}`}>
             <HamburgerMenu
                 isOpen={open}
                 menuClicked={handleClick}

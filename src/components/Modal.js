@@ -76,7 +76,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                   <h4 className=" text-lg leading-relaxed w-1/2">
                     What would you rate this game?
                   </h4>
-                    <select id="user-rating" className="w-1/2 border border-solid border-b border-solid border-blue-300 text-black p-2">
+                    <select id="user-rating" className="w-1/2 h-16 border border-solid border-b border-solid border-blue-300 text-black p-2">
                         <option defaultValue={true} >-- Pick a rating --</option>
                         <option value="10">10 Masterpiece</option>
                         <option value="9">9 Great</option>
