@@ -66,7 +66,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                     {game.title}
                   </h3>
                   <div className="flex flex-row mt-1">
-                    {game.genres.map(genre => <h4 className="text-xs font-semibold  text-white bg-blue-700 p-2 mr-1 rounded-lg sm:text-lg">{genre}</h4>)}
+                    {game.genres.map((genre, index) => <h4 key={game.key + `${index}`} className="text-xs font-semibold text-white bg-blue-700 p-2 mr-1 rounded-lg sm:text-lg">{genre}</h4>)}
                   </div>
                 </div>
 
@@ -91,12 +91,12 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                     </select>
                 </div>
 
-                {/*footer*/}
+                {/* ----footer---- */}
 
                 <div className="flex items-center justify-between p-2 rounded-b bg-gray-100 h-16 sm:p-4">
                   <button
                       className={canDelete ? 
-                        "mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1"
+                        "mb-0 bg-red-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-4 rounded shadow hover:shadow-lg outline-none sm:py-2.5 focus:outline-none mr-1"
                       :
                         "hidden pointer-events-none"}
                       type="button"
@@ -109,7 +109,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                       Delete
                     </button>
                     <button
-                      className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 "
+                      className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-4 rounded shadow sm:py-2.5 hover:shadow-lg outline-none focus:outline-none mr-1 "
                       type="button"
                       style={{ transition: "all .15s ease" }}
                       onClick={() => {
@@ -120,7 +120,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                       Save Changes
                     </button>
                     <button
-                      className="bg-blue-700 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 "
+                      className="bg-blue-700 text-white active:bg-green-600 font-bold uppercase text-sm px-5 py-4 rounded shadow sm:py-2.5 hover:shadow-lg outline-none focus:outline-none mr-1 "
                       type="button"
                       style={{ transition: "all .15s ease" }}
                       onClick={() => setShowModal(false)}
