@@ -6,10 +6,13 @@ import '../assets/gameCard.css'
 
 function GameCard({data, isLoggedIn}) {
 
-    const [image, setImage] = useState(data.background_image)
-    const [title, setTitle] = useState(data.name)
-    const [genres, setGenres] = useState(data.genres.map((genre, index) => index > 0 ? `, ${genre.name}` : `${genre.name}`))
+    // const [image, setImage] = useState(data.background_image)
+    // const [title, setTitle] = useState(data.name)
+    // const [genres, setGenres] = useState(data.genres.map((genre, index) => index > 0 ? `, ${genre.name}` : `${genre.name}`))
     const [inList, setInList] = useState()
+
+    let { background_image: image, name: title } = data
+    let genres = data.genres.map((genre, index) => index > 0 ? `, ${genre.name}` : `${genre.name}`)
 
     const ratingColor = data.metacritic >= 70 ? "green" : "yellow"
     const ratingStyle = `float-right text-center m-2 w-10 h-10 bg-blue-900 text-${ratingColor}-400 border border-${ratingColor}-400 rounded-full font-semibold`
@@ -61,7 +64,7 @@ function GameCard({data, isLoggedIn}) {
                         <h1 className="hidden-contents text-center px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-gray-700">Log in to rate this game!</h1>}
                         <a className="hidden-contents inline font-bold uppercase text-sm text-center px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-gray-800" 
                         href={'https://rawg.io/games/' + data.slug} 
-                        target="_blank">
+                        target="_blank" rel="noopener noreferrer">
                             View on RAWG.io 
                         </a>
                     </div>

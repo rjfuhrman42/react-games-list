@@ -33,12 +33,10 @@ function App(props) {
   const [apiURL, setApiURL] = useState()
   const [firebaseInitialized, setFirebaseInitialized] = useState(false)
 
-  const { history } = props         // gives us acccess to the history object
-                                    // so that when a user searches for a game while looking at their list
-                                    // it will bring them back to the main page after hitting enter
+  // const { history } = props         // gives us acccess to the history object
+  //                                   // so that when a user searches for a game while looking at their list
+  //                                   // it will bring them back to the main page after hitting enter
 
-  const date = new Date(Date.now())
-  const year = date.getFullYear()
 
   const handleKeyPress = (event) =>
   {
@@ -58,25 +56,14 @@ function App(props) {
     setApiURL(`https://api.rawg.io/api/games?search=${term}&page=${page}`)
   }
 
-  function getGamesData() {
-    setLoading(true)
-    fetch(apiURL,
-      {
-          headers : {
-              'User-Agent': 'react-games-list / personal use project'
-      }})
-      .then(data => data.json())
-      .then(games => {
-      setIsSearch(isSearch)                                                          // now in a "searched for game" state
- 
-      setGames(games.results)
-      setLoading(false)
-    })
-  }
 
   // relevancy is defined by games released 2 months prior to current month, up to the end of the year
 
   useEffect(() => {
+
+    const date = new Date(Date.now())
+    const year = date.getFullYear()
+
     checkInitialization()
 
     setApiURL(`https://api.rawg.io/api/games?dates=${year - 1}-10-01,${year}-12-31&ordering=-added&page=${page}`)
@@ -88,7 +75,22 @@ function App(props) {
   }, [apiURL])
 
   useEffect(() => setApiURL(prev => prev.replace(/\d+$/g, page)), [page])
-  useEffect(() => getGamesData(), [apiURL])
+
+  useEffect(() => {
+        setLoading(true)
+        fetch(apiURL,
+          {
+              headers : {
+                  'User-Agent': 'react-games-list / personal use project'
+          }})
+          .then(data => data.json())
+          .then(games => {
+          setIsSearch(isSearch)                                                          // now in a "searched for game" state
+    
+          setGames(games.results)
+          setLoading(false)
+        })
+  }, [apiURL])
 
   function changePage(next) {
     if(next) setPage(prev => prev + 1)
@@ -109,6 +111,15 @@ function App(props) {
   :
   (
     <button name="previousPageButton" className=" bg-blue-100 text-white m-2 cursor-default" ></button>
+  )
+
+  var returnButton = page > 1 ? 
+  (
+    <button name="returnButton" className=" bg-blue-700 text-white m-2 p-1.5" onClick={() => setPage(1)} > ⮜⮜ </button>
+  )
+  :
+  (
+    <button name="returnButton" className=" bg-blue-100 text-white m-2 cursor-default" ></button>
   )
 
   var loggedOutLinks = (
@@ -228,6 +239,7 @@ return (
           
           
           <div className="flex justify-center items-center h-10 text-sm col-span-1 mr-4 ml-4 2xl:col-span-4 xl:col-span-3 md:col-span-2">
+            {returnButton}
             {prevPageButton}
             <h2 className=" row-end-auto text-center">Page: {page}</h2>
             <button className="p-1.5 bg-blue-700 text-white m-2" onClick={() => changePage(true)} > ⮞ </button>
