@@ -1,14 +1,14 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import Modal from './Modal'
 import fire from "../config/fire"
+
+import { BsPlus } from 'react-icons/bs'
+import { IconContext } from "react-icons"
 
 import '../assets/gameCard.css'
 
 function GameCard({data, isLoggedIn}) {
 
-    // const [image, setImage] = useState(data.background_image)
-    // const [title, setTitle] = useState(data.name)
-    // const [genres, setGenres] = useState(data.genres.map((genre, index) => index > 0 ? `, ${genre.name}` : `${genre.name}`))
     const [inList, setInList] = useState()
 
     let { background_image: image, name: title } = data
@@ -36,7 +36,7 @@ function GameCard({data, isLoggedIn}) {
                                  <p></p>}
               <h4 className="h-10 m-4 mb-0 w-3/4 truncate" onMouseEnter={() => isGameAlreadyInList()}>{title}</h4>
                 <div className="inner-container">
-                    <p className="hidden-contents">{genres}</p>
+                    <p className="hidden-contents truncate">{genres}</p>
                     <p className="hidden-contents">{data.released}</p>
                     <div className="grid grid-cols-2 mt-6">
                         {fire.auth.currentUser ? inList ?  
@@ -55,9 +55,14 @@ function GameCard({data, isLoggedIn}) {
                                         title: title,
                                         genres: data.genres.map(genre => genre.name),
                                     }}
-                            currClass="hidden-contents bg-green-500 text-white hover:shadow-lg"
+                            currClass="hidden-contents bg-green-500 text-white flex justify-center items-center hover:shadow-lg"
                                     >
-                            Add to list <span role="img">🞣</span>
+                            <h5>Add to list</h5>
+                            <span role="img">
+                                <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                                    <BsPlus />
+                                </IconContext.Provider> 
+                            </span>
                             
                         </Modal>
                         : 

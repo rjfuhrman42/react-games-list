@@ -7,10 +7,10 @@ import UserList from "./components/UserList"
 import SortTab from "./components/SortTab"
 import MobileMenu from "./components/MobileMenu"
 
-import { FaReact } from 'react-icons/fa'
+import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaReact } from 'react-icons/fa'
 import { BsList, BsBoxArrowLeft, BsBoxArrowInUp } from 'react-icons/bs'
 import { WiStars } from 'react-icons/wi'
-import { IconContext } from "react-icons";
+import { IconContext } from "react-icons"
 
 import './assets/full.css'
 
@@ -106,7 +106,11 @@ function App(props) {
 
   var prevPageButton = page > 1 ? 
   (
-    <button name="previousPageButton" className=" bg-blue-700 text-white m-2 p-1.5" onClick={() => changePage(false)} > ⮜ </button>
+    <button name="previousPageButton" className=" bg-blue-700 text-white m-2 p-1.5" onClick={() => changePage(false)} > 
+      <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+        <FaAngleLeft />
+      </IconContext.Provider> 
+    </button>
   )
   :
   (
@@ -115,7 +119,11 @@ function App(props) {
 
   var returnButton = page > 1 ? 
   (
-    <button name="returnButton" className=" bg-blue-700 text-white m-2 p-1.5" onClick={() => setPage(1)} > ⮜⮜ </button>
+    <button name="returnButton" className=" bg-blue-700 text-white m-2 p-1.5" onClick={() => setPage(1)} > 
+      <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+        <FaAngleDoubleLeft />
+      </IconContext.Provider> 
+    </button>
   )
   :
   (
@@ -241,8 +249,12 @@ return (
           <div className="flex justify-center items-center h-10 text-sm col-span-1 mr-4 ml-4 2xl:col-span-4 xl:col-span-3 md:col-span-2">
             {returnButton}
             {prevPageButton}
-            <h2 className=" row-end-auto text-center">Page: {page}</h2>
-            <button className="p-1.5 bg-blue-700 text-white m-2" onClick={() => changePage(true)} > ⮞ </button>
+            <h2 className=" row-end-auto text-center text-xl">Page: {page}</h2>
+            <button className="p-1.5 bg-blue-700 text-white m-2" onClick={() => changePage(true)} > 
+              <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <FaAngleRight />
+              </IconContext.Provider> 
+            </button>
           </div>
         </GamesList>
       </Route>

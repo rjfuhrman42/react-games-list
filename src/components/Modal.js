@@ -87,7 +87,7 @@ function Modal({onClick, game, currClass, canDelete, children}) {
                         <option value="4">4 Bad</option>
                         <option value="3">3 Very Bad</option>
                         <option value="2">2 Horrible</option>
-                        <option value="1">1 Appaling</option>
+                        <option value="1">1 Appalling</option>
                     </select>
                 </div>
 
