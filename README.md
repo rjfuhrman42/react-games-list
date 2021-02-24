@@ -4,6 +4,10 @@
 
 ![image](public/screenshot1.jpg?raw=true "Preview")
 
+## About
+
+React Games List is an app inspired by MyAnimeList where you can search from a database of games, add the ones you have played to your own personal list, and rate them from 1 to 10.
+
 ## Available Scripts
 
 In the project directory, you can run:
