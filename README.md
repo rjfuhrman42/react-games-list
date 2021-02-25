@@ -2,7 +2,9 @@
   <img alt="Logo" src="src/images/gamepad-logo.png" width="100" />
 </div>
 <h1 align="center">
-  React Games List
+  <a href="https://react-games-list.web.app/">
+    React Games List
+  </a>
 </h1>
 
 ![image](src/images/screenshot1.jpg?raw=true "Preview")
