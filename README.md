@@ -10,6 +10,10 @@ React Games List is an app inspired by MyAnimeList where you can search from a d
 
 ## Available Scripts
 
+### If you clone
+
+Run `npm install` to get the proper required node modules.
+
 In the project directory, you can run:
 
 ### `npm start`
