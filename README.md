@@ -4,8 +4,9 @@
 <h1 align="center">
   React Games List
 </h1>
-
-## Live site: https://react-games-list.web.app/
+<p align="center">
+  A full realization of a previous project, <a href="https://github.com/rjfuhrman42/game-list-app">games-list-app</a>.<a href="https://react-games-list.web.app/">React Games List</a> was built with React, Tailwind, and hosted with Firebase.
+</p>
 
 ![image](public/screenshot1.jpg?raw=true "Preview")
 
