@@ -4,6 +4,7 @@
 <h1 align="center">
   React Games List
 </h1>
+
 ## Live site: https://react-games-list.web.app/
 
 ![image](public/screenshot1.jpg?raw=true "Preview")
