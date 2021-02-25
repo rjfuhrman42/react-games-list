@@ -1,5 +1,9 @@
-# React Games List
-
+<div align="center">
+  <img alt="Logo" src="src/images/gamepad-logo.png" width="100" />
+</div>
+<h1 align="center">
+  React Games List
+</h1>
 ## Live site: https://react-games-list.web.app/
 
 ![image](public/screenshot1.jpg?raw=true "Preview")
