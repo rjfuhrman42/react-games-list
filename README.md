@@ -4,15 +4,12 @@
 <h1 align="center">
   React Games List
 </h1>
-<p align="center">
-  A full realization of a previous project, <a href="https://github.com/rjfuhrman42/game-list-app">games-list-app</a>.<a href="https://react-games-list.web.app/">React Games List</a> was built with React, Tailwind, and hosted with Firebase.
-</p>
 
-![image](public/screenshot1.jpg?raw=true "Preview")
+![image](src/images/screenshot1.jpg?raw=true "Preview")
 
 ## About
 
-React Games List is an app inspired by MyAnimeList where you can search from a database of games, add the ones you have played to your own personal list, and rate them from 1 to 10.
+React Games List is a full realization of a previous project <a href="https://github.com/rjfuhrman42/game-list-app">games-list-app</a> and is inspired by MyAnimeList. You can search from a database of games, add the ones you have played to your own personal list, and rate them from 1 to 10. <a href="https://react-games-list.web.app/">React Games List</a> was built with React and Tailwind, and hosted with Firebase.
 
 ## Available Scripts
 
