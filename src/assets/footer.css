@@ -1,0 +1,52 @@
+#footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2em;
+    height:8vh;
+    width: 100%;
+    background:#1d4ed8;
+    color: white;
+  }
+  
+  .in-touch a:hover, .api a:hover {
+    margin: auto;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out;
+  }
+  
+  .socials {
+    list-style-type: none;
+    display: inline-flex;
+    padding-top: 0.5em;
+    margin: 0;
+  }
+  
+  .socials li {
+    padding: 0em 0.5em ;
+  }
+
+  .socials li:hover {
+    background-color: black;
+  }
+  
+  .socials a:hover {
+
+    background-color: black;
+  }
+  
+  .ri-xl {
+    padding: 0.1em;
+    line-height: unset;
+  }
+  
+  .ri-xl:hover{
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out;
+  }
+

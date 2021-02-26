@@ -6,6 +6,7 @@ import Login from './components/Login'
 import UserList from "./components/UserList"
 import SortTab from "./components/SortTab"
 import MobileMenu from "./components/MobileMenu"
+import Footer from "./components/Footer"
 
 import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaReact } from 'react-icons/fa'
 import { BsList, BsBoxArrowLeft, BsBoxArrowInUp } from 'react-icons/bs'
@@ -232,10 +233,8 @@ return (
       
       {loggedIn ? loggedInLinks : loggedOutLinks}
 
-    </header>
-
+    </header>                     
     {/* -------------- BODY/ROUTES -------------- */}                                  
-    
     <Switch>       
       <Route exact path="/">
         <GamesList games={games} search={<SearchBar handleKeyPress={handleKeyPress} handleClick={handleClick}>
@@ -269,6 +268,7 @@ return (
       </Route>
 
     </Switch>
+    <Footer />   
   </div>
 )
 else return (
