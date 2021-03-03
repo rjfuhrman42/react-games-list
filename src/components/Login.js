@@ -17,7 +17,7 @@ function Login({checkInitialization}) {
     // }
 
     return (
-        <div className="absolute flex justify-center mt-6 items-center content-around w-full sm:mt-16">
+        <div className="flex justify-center items-center content-around w-full">
             <div className="bg-white rounded w-10/12 shadow-xl text-black mt-0 p-12 flex flex-col content-around sm:w-xtra sm:p-20 ">
                 <h1 className="text-3xl font-bold mb-6 leading-none">Login</h1>
                 <form className="mb-6">

@@ -267,8 +267,8 @@ return (
         <UserList />
       </Route>
 
-    </Switch>
-    <Footer />   
+    </Switch>  
+    <Footer /> 
   </div>
 )
 else return (

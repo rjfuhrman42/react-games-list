@@ -16,7 +16,7 @@ const override = css`
 function GamesList({children, games, isLoggedIn, isLoading, search}) {
 
     if(isLoading) return (
-        <div className="grid grid-cols-1 pt-4 h-full m-auto 2xl:w-games 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xl:w-full">
+        <div className="grid grid-cols-1 pt-4 h-full m-auto pb-games 2xl:w-games 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xl:w-full">
             {search}
             <SyncLoader
                     css={override}

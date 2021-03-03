@@ -11,26 +11,26 @@ function Register({checkInitialization})
     let history = useHistory();
     
     return (
-        <div className="absolute flex justify-center mt-8 items-center content-around w-full sm:mt-16">
-            <div className="bg-white rounded w-10/12 shadow-xl text-black p-12 flex flex-col content-around sm:w-xtra sm:p-20 ">
-                <h1 className="text-3xl font-bold mb-6 leading-none">Create an Account</h1>
+        <div className="flex justify-center items-center content-around w-full">
+            <div className="bg-white rounded w-10/12 shadow-xl text-black p-8 flex flex-col content-around sm:w-xtra sm:p-20 ">
+                <h1 className="text-2xl font-bold mb-6 leading-none sm:text-3xl">Create an Account</h1>
                 <form className="mb-6">
                     <h3>Username</h3>
-                    <input className="border border-rounded rounded-md border-grey h-14 w-full text-black p-2 mb-6" 
+                    <input className="border border-rounded rounded-md border-grey h-10 w-full text-black p-2 mb-3 sm:p-2 sm:mb-6 sm:h-14" 
                            type="text"
                            placeholder="enter a username"
                            onChange={(e) => setName(e.target.value)}
                            value={name}
                     />
                     <h3>Email</h3>
-                    <input className="border border-rounded rounded-md border-grey h-14 w-full text-black p-2 mb-6" 
+                    <input className="border border-rounded rounded-md border-grey h-10 w-full text-black p-2 mb-3 sm:p-2 sm:mb-6 sm:h-14" 
                            type="email"
                            placeholder="enter email address"
                            onChange={(e) => setEmail(e.target.value)}
                            value={email}
                     />
                     <h3>Password</h3>
-                    <input className="border border-rounded rounded-md border-grey h-14 w-full text-black p-2 mb-6" 
+                    <input className="border border-rounded rounded-md border-grey h-10 w-full text-black p-2 mb-3 sm:p-2 sm:mb-6 sm:h-14" 
                            type="password"
                            placeholder="enter password"
                            onChange={(e) => setPassword(e.target.value)}                    // this cant be okay....

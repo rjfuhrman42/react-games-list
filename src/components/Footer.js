@@ -7,7 +7,7 @@ import '../assets/footer.css'
 
 function Footer() {
     return (
-        <footer id="footer">
+        <footer id="footer" className="self-end">
             <div className="in-touch"> 
                 <a href="https://rjfuhrman42.github.io/Portfolio-Website/" target="_blank">
                     Get in touch

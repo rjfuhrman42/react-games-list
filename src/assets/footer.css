@@ -3,8 +3,8 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-top: 2em;
-    height:8vh;
+    margin-top: 2em; 
+    height: 8vh; 
     width: 100%;
     background:#1d4ed8;
     color: white;
