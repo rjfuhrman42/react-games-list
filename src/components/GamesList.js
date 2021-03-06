@@ -27,7 +27,7 @@ function GamesList({children, games, isLoggedIn, isLoading, search}) {
         </div>
     )
     else return(
-        <div className="grid grid-cols-1 pt-4 h-full m-auto 2xl:w-games 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xl:w-full">
+        <div className="grid grid-cols-1 pt-4 h-full 2xl:w-games 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xl:m-auto xl:w-full">
         {search}
         {children} 
         {  

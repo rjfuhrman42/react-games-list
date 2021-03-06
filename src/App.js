@@ -9,7 +9,7 @@ import MobileMenu from "./components/MobileMenu"
 import Footer from "./components/Footer"
 
 import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaReact } from 'react-icons/fa'
-import { BsList, BsBoxArrowLeft, BsBoxArrowInUp } from 'react-icons/bs'
+import { BsList, BsBoxArrowLeft, BsBoxArrowInUp, BsHouse } from 'react-icons/bs'
 import { WiStars } from 'react-icons/wi'
 import { IconContext } from "react-icons"
 
@@ -193,7 +193,17 @@ return (
 
       <MobileMenu shown={loggedIn}>
         <li>
-          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-blue-800 sm:mr-2 ">
+          <Link to='/' className="mr-1 text-blue-100 p-4 flex justify-between items-center hover:bg-blue-800 sm:mr-2 ">
+            <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
+                <BsHouse />
+            </IconContext.Provider> 
+
+            <div className="w-full p-0 sm:pb-1 pl-2">Home</div>
+
+          </Link>
+        </li>
+        <li>
+          <Link to='/list' className="mr-1 text-blue-100 p-4 flex justify-between items-center border-t hover:bg-blue-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsList />
             </IconContext.Provider> 
@@ -207,7 +217,7 @@ return (
                                       fire.logout()
                                       checkInitialization()
                             }} 
-                className="mr-1 text-blue-100 p-4 flex justify-between items-center rounded-lg hover:bg-red-800 sm:mr-2 ">
+                className="mr-1 text-blue-100 p-4 flex justify-between items-center border-t hover:bg-red-800 sm:mr-2 ">
             <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2em" }}>
                 <BsBoxArrowLeft />
             </IconContext.Provider> 
@@ -233,8 +243,10 @@ return (
       
       {loggedIn ? loggedInLinks : loggedOutLinks}
 
-    </header>                     
+    </header>       
+                  
     {/* -------------- BODY/ROUTES -------------- */}                                  
+   
     <Switch>       
       <Route exact path="/">
         <GamesList games={games} search={<SearchBar handleKeyPress={handleKeyPress} handleClick={handleClick}>

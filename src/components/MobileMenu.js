@@ -8,6 +8,9 @@ function MobileMenu({children, shown}) {
 
 
     function handleClick() {
+        if(!open) document.querySelector("body").style.overflow = "hidden"
+        else document.querySelector("body").style.overflow = "auto"
+
         setOpen(prev => !prev)
     }
     
@@ -25,7 +28,7 @@ function MobileMenu({children, shown}) {
                 borderRadius={0}
                 animationDuration={0.5}
             />
-            <ul onClick={() => setOpen(false)} className={`fixed transform top-16 left-0 p-4 z-10 w-full text-center text-xl bg-blue-600
+            <ul onClick={() => handleClick()} className={`fixed transform top-16 left-0 p-4 z-10 w-full text-center text-xl bg-blue-600
                           ${open ? "opacity-100" : "opacity-0 pointer-events-none"} transition duration-200 ease-linear `}
             >
               {open ? children : ""}  
